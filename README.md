@@ -1,4 +1,4 @@
-<p align="center"><img src="tmp/logo.svg" width="100"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/asboldyrev/cropkeeper/main/public/img/logo.svg" width="100"></p>
 
 
 ## About CropKeeper
