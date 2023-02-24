@@ -6,23 +6,25 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Plot extends Model
+class Plant extends Model
 {
 	use HasFactory, HasUuids;
 
 	protected $fillable = [
 		'name',
 		'description',
-		'polygon',
-		'area',
-		'ph',
+		'is_seedling',
+		'is_transplanted',
+		'planted_at',
+		'harvested_at',
 	];
 
 	protected $casts = [
-		'area' => 'float',
-		'ph' => 'float',
+		'is_seedling' => 'boolean',
+		'is_transplanted' => 'boolean',
+		'planted_at' => 'datetime',
+		'harvested_at' => 'datetime',
 	];
 
 	protected $primaryKey = 'uuid';
@@ -30,17 +32,12 @@ class Plot extends Model
 	public $incrementing = false;
 
 
-	public function garden():BelongsTo {
-		return $this->belongsTo(Garden::class);
+	public function seed():BelongsTo {
+		return $this->belongsTo(Seed::class);
 	}
 
 
-	public function plantingMethod():BelongsTo {
-		return $this->belongsTo(PlantingMethod::class);
-	}
-
-
-	public function plants():HasMany {
-		return $this->hasMany(Plant::class);
+	public function plot():BelongsTo {
+		return $this->belongsTo(Plot::class);
 	}
 }
