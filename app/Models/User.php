@@ -37,7 +37,7 @@ class User extends Authenticatable
 
 	protected $primaryKey = 'uuid';
 
-	protected $incrementing = false;
+	public $incrementing = false;
 
 
 	public function gardens():BelongsToMany {
