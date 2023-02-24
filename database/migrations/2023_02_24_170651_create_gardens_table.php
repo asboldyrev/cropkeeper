@@ -14,9 +14,9 @@ return new class extends Migration
 		Schema::create('gardens', function (Blueprint $table) {
 			$table->uuid()->primary();
 			$table->string('name');
-			$table->text('description');
+			$table->text('description')->nullable();
 			$table->polygon('polygon')->nullable();
-			$table->float('area');
+			$table->float('area')->nullable();
 			$table->timestamps();
 		});
 	}
