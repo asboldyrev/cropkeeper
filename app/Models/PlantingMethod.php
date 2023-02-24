@@ -17,6 +17,8 @@ class PlantingMethod extends Model
 
 	protected $primaryKey = 'uuid';
 
+	protected $incrementing = false;
+
 
 	public function plots():HasMany {
 		return $this->hasMany(Plot::class);

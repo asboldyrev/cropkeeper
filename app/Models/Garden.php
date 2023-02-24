@@ -18,11 +18,13 @@ class Garden extends Model
 		'area',
 	];
 
-	protected $primaryKey = 'uuid';
-
 	protected $casts = [
 		'area' => 'float',
 	];
+
+	protected $primaryKey = 'uuid';
+
+	protected $incrementing = false;
 
 
 	public function users():BelongsToMany {

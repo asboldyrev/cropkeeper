@@ -26,6 +26,8 @@ class Plot extends Model
 
 	protected $primaryKey = 'uuid';
 
+	protected $incrementing = false;
+
 
 	public function garden():BelongsTo {
 		return $this->belongsTo(Garden::class);
