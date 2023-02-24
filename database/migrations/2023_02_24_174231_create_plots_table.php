@@ -17,13 +17,10 @@ return new class extends Migration
 			$table->text('description')->nullable();
 			$table->polygon('polygon')->nullable();
 			$table->float('area')->nullable();
-			// $table->uuid('garden_uuid')->unique();
-			// $table->uuid('planting_method_uuid')->unique();
+			$table->foreignUuid('garden_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
+			$table->foreignUuid('planting_method_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
 			$table->float('ph', 2, 1);
 			$table->timestamps();
-
-			$table->foreignUuid('garden_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
-			$table->foreignUuid('planting_method_uuid')->constrained('planting_methods', 'uuid')->cascadeOnDelete();
 		});
 	}
 
