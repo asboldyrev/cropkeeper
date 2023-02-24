@@ -12,7 +12,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('gardens', function (Blueprint $table) {
-			$table->uuid();
+			$table->uuid()->primary();
 			$table->string('name');
 			$table->text('description');
 			$table->polygon('polygon')->nullable();
