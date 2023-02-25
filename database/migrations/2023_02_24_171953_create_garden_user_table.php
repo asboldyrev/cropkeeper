@@ -12,8 +12,8 @@ return new class extends Migration
 	public function up(): void
 	{
 		Schema::create('garden_user', function (Blueprint $table) {
-			$table->foreignUuid('garden_uuid')->constrained( column: 'uuid')->restrictOnDelete();
-			$table->foreignUuid('user_uuid')->constrained( column: 'uuid')->restrictOnDelete();
+			$table->foreignUuid('garden_uuid')->constrained( column: 'uuid')->cascadeOnDelete();
+			$table->foreignUuid('user_uuid')->constrained( column: 'uuid')->cascadeOnDelete();
 			$table->string('role');
 		});
 	}

@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->polygon('polygon')->nullable();
 			$table->float('area')->nullable();
 			$table->foreignUuid('garden_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
-			$table->foreignUuid('planting_method_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
+			$table->foreignUuid('planting_method_uuid')->constrained(column: 'uuid')->restrictOnDelete();
 			$table->float('ph', 2, 1);
 			$table->timestamps();
 		});

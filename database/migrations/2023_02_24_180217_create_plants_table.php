@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->boolean('is_transplanted')->index()->default(false);
 			$table->timestamp('planted_at')->nullable();
 			$table->timestamp('harvested_at')->nullable();
-			$table->foreignUuid('seed_uuid')->constrained(column: 'uuid')->restrictOnDelete();
+			$table->foreignUuid('seed_uuid')->constrained(column: 'uuid')->nullOnDelete();
 			$table->foreignUuid('plot_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
 			$table->timestamps();
 		});
