@@ -48,7 +48,7 @@ class ReplaceStatusResponse
 
 			$result = json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
 
-			return $response->setContent($result);
+			return $response->setStatusCode(422)->setContent($result);
 		}
 
 		return $response;
