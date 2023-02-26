@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 include_once base_path('routes/api/auth.php');
+include_once base_path('routes/api/register.php');
