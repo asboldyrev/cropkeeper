@@ -26,10 +26,6 @@ class ReplaceStatusResponse
 		$status_code = $response->getStatusCode();
 		$message = $response?->exception?->getMessage();
 
-		if($status_code == 200) {
-			return $response;
-		}
-
 		if($status_code >= 400 && $status_code < 500) {
 			$status_code = 422;
 		}
