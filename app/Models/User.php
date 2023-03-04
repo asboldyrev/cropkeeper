@@ -43,7 +43,7 @@ class User extends Authenticatable
 
 
 	public function gardens():BelongsToMany {
-		return $this->belongsToMany(Garden::class);
+		return $this->belongsToMany(Garden::class)->withPivot('role');
 	}
 
 
