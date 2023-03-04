@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Actions\CheckUserAuth;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController
 {
@@ -21,21 +21,17 @@ class UserController
 	}
 
 
-	public function show(User $user)
+	public function show(User $user, CheckUserAuth $checkUserAuth)
 	{
-		if($user->uuid != Auth::user()->uuid) {
-			return response(status: 403);
-		}
+		$checkUserAuth($user);
 
 		return UserResource::make($user);
 	}
 
 
-	public function update(Request $request, User $user)
+	public function update(Request $request, User $user, CheckUserAuth $checkUserAuth)
 	{
-		if($user->uuid != Auth::user()->uuid) {
-			return response(status: 403);
-		}
+		$checkUserAuth($user);
 
 		$user_data = $request->only(['login', 'password', 'first_name', 'last_name', 'locale']);
 		$user->update($user_data);
