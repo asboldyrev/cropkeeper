@@ -19,3 +19,4 @@ include_once base_path('routes/api/register.php');
 
 include_once base_path('routes/api/users.php');
 include_once base_path('routes/api/gardens.php');
+include_once base_path('routes/api/plots.php');
