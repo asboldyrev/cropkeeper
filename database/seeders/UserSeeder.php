@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
 			'email' => 'admin@admin.ru',
 			'password' => '000000',
 			'first_name' => 'Администратор',
+			'locale' => 'ru'
 		]);
 	}
 }
