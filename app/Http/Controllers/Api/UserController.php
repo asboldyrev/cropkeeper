@@ -9,18 +9,6 @@ use Illuminate\Http\Request;
 
 class UserController
 {
-	public function list()
-	{
-		return response(status: 403);
-	}
-
-
-	public function store(Request $request)
-	{
-		return response(status: 403);
-	}
-
-
 	public function show(User $user, CheckUserAuth $checkUserAuth)
 	{
 		$checkUserAuth($user);
@@ -37,11 +25,5 @@ class UserController
 		$user->update($user_data);
 
 		return UserResource::make($user);
-	}
-
-
-	public function delete(User $user)
-	{
-		return response(status: 403);
 	}
 }

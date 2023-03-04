@@ -9,10 +9,7 @@ Route
 	->controller(UserController::class)
 	->group(function (Router $router) {
 
-		$router->post('list', 'list');
-		$router->post('store', 'store');
 		$router->post('show/{user}', 'show');
 		$router->post('update/{user}', 'update');
-		$router->post('delete/{user}', 'delete');
 
 	});
