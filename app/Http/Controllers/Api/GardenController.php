@@ -38,7 +38,7 @@ class GardenController
 
 	public function show(Garden $garden, CheckUserAuth $checkUserAuth)
 	{
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($garden);
 
 		return GardenResource::make($garden);
 	}
@@ -46,7 +46,7 @@ class GardenController
 
 	public function update(Request $request, Garden $garden, CheckUserAuth $checkUserAuth)
 	{
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($garden);
 		$garden->update($request->only([ 'name', 'description', 'polygon', 'area' ]));
 
 		return GardenResource::make($garden);
@@ -55,7 +55,7 @@ class GardenController
 
 	public function delete(Garden $garden, CheckUserAuth $checkUserAuth)
 	{
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($garden);
 		$garden->delete();
 
 		return response()->noContent();

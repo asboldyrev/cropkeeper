@@ -21,7 +21,7 @@ class PlotController extends Controller
 		/** @var Garden $garden */
 		$garden = Garden::find($request->input('garden_uuid'));
 
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($garden);
 
 		return PlotResource::collection($garden->plots);
 	}
@@ -42,7 +42,7 @@ class PlotController extends Controller
 		/** @var Garden $garden */
 		$garden = Garden::find($request->input('garden_uuid'));
 
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($garden);
 
 		/** @var PlantingMethod $planting_method */
 		$planting_method = PlantingMethod::find($request->input('planting_method_uuid'));
@@ -58,10 +58,7 @@ class PlotController extends Controller
 
 	public function show(Plot $plot, CheckUserAuth $checkUserAuth)
 	{
-		/** @var Garden $garden */
-		$garden = $plot->garden()->first();
-
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($plot);
 
 		return PlotResource::make($plot);
 	}
@@ -77,10 +74,7 @@ class PlotController extends Controller
 			'ph' => [ 'nullable', 'numeric' ],
 		]);
 
-		/** @var Garden $garden */
-		$garden = $plot->garden()->first();
-
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($plot);
 
 		$plot->update($validated);
 
@@ -90,10 +84,7 @@ class PlotController extends Controller
 
 	public function delete(Plot $plot, CheckUserAuth $checkUserAuth)
 	{
-		/** @var Garden $garden */
-		$garden = $plot->garden()->first();
-
-		$checkUserAuth($garden->users()->get());
+		$checkUserAuth($plot);
 
 		$plot->delete();
 
