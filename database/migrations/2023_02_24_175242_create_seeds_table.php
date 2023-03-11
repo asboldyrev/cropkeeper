@@ -19,6 +19,7 @@ return new class extends Migration
 			$table->timestamp('bought_at')->nullable();
 			$table->timestamp('expiration_at')->nullable();
 			$table->unsignedSmallInteger('count')->default(0);
+			$table->foreignUuid('garden_uuid')->constrained( column: 'uuid')->cascadeOnDelete();
 			$table->timestamps();
 		});
 	}
