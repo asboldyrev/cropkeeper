@@ -95,7 +95,7 @@ class PlotController extends Controller
 
 		$checkUserAuth($garden->users()->get());
 
-		$garden->delete();
+		$plot->delete();
 
 		return response()->noContent();
 	}
