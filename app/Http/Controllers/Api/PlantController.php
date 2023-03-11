@@ -26,17 +26,9 @@ class PlantController extends Controller
 
 		$plot_uuid = $request->input('plot_uuid');
 
-		$plots = $garden
-			->plots()
-			->when($plot_uuid, function($query) use ($plot_uuid) {
-				return $query->where('uuid', $plot_uuid);
-			})
-			->get();
-
 		$plants = Plant
-			::whereHas('plot', function($query) use($plots) {
-				return $query->whereIn('uuid', $plots->pluck('uuid'));
-			})
+			::where('garden_uuid', $garden->uuid)
+			->when($plot_uuid, fn($query) => $query->where('plot_uuid', $plot_uuid))
 			->get();
 
 		return PlantResource::collection($plants);
@@ -67,6 +59,7 @@ class PlantController extends Controller
 		$plant = new Plant($validated);
 		$plant->plot()->associate($plot);
 		$plant->seed()->associate($seed);
+		$plant->garden()->associate($plot->garden_uuid);
 		$plant->save();
 
 		return PlantResource::make($plant);

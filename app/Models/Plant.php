@@ -33,6 +33,11 @@ class Plant extends Model
 	public $incrementing = false;
 
 
+	public function garden():BelongsTo {
+		return $this->belongsTo(Garden::class);
+	}
+
+
 	public function seed():BelongsTo {
 		return $this->belongsTo(Seed::class);
 	}

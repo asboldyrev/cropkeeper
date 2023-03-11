@@ -21,6 +21,7 @@ return new class extends Migration
 			$table->timestamp('harvested_at')->nullable();
 			$table->foreignUuid('seed_uuid')->nullable()->constrained(column: 'uuid')->nullOnDelete();
 			$table->foreignUuid('plot_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
+			$table->foreignUuid('garden_uuid')->constrained( column: 'uuid')->cascadeOnDelete();
 			$table->timestamps();
 		});
 	}

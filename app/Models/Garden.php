@@ -38,6 +38,11 @@ class Garden extends Model
 	}
 
 
+	public function plants():HasMany {
+		return $this->hasMany(Plants::class);
+	}
+
+
 	public function seeds():HasMany {
 		return $this->hasMany(Seed::class);
 	}
