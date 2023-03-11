@@ -53,5 +53,12 @@ class FakeDataSeeder extends Seeder
 			"harvested_at" => "2004-02-12T15:19:21+00:00",
 			"count" => 1.5
 		]);
+
+
+		// PlantCare
+		$plant_care = $plant->plantCares()->create([
+			"action" => "Уборка урожая",
+			"date" => "2004-02-12T15:19:21+00:00"
+		]);
 	}
 }
