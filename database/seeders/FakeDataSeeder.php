@@ -47,5 +47,11 @@ class FakeDataSeeder extends Seeder
 		$plant->seed()->associate($seed);
 		$plant->garden()->associate($garden);
 		$plant->save();
+
+		// Harvest
+		$harvests = $plant->harvests()->create([
+			"harvested_at" => "2004-02-12T15:19:21+00:00",
+			"count" => 1.5
+		]);
 	}
 }

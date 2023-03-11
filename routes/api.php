@@ -23,3 +23,4 @@ include_once base_path('routes/api/plots.php');
 include_once base_path('routes/api/planting_methods.php');
 include_once base_path('routes/api/seeds.php');
 include_once base_path('routes/api/plants.php');
+include_once base_path('routes/api/harvests.php');
