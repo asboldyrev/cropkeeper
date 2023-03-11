@@ -26,7 +26,7 @@ class CheckUserAuth
 			'App\\Models\\User' => $model,
 			'App\\Models\\Garden' => $model->users()->get(),
 			'App\\Models\\Plot' => $model->garden()->first()->users()->get(),
-			// 'App\\Models\\Plant' => '',
+			'App\\Models\\Plant' => $model->plot()->first()->garden()->first()->users()->get(),
 			// 'App\\Models\\PlantCare' => '',
 			// 'App\\Models\\Harvest' => '',
 			// 'App\\Models\\Reminder' => '',

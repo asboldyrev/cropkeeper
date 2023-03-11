@@ -22,3 +22,4 @@ include_once base_path('routes/api/gardens.php');
 include_once base_path('routes/api/plots.php');
 include_once base_path('routes/api/planting_methods.php');
 include_once base_path('routes/api/seeds.php');
+include_once base_path('routes/api/plants.php');
