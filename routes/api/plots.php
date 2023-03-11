@@ -12,8 +12,8 @@ Route
 
 		$router->post('list', 'list');
 		$router->post('store', 'store');
-		$router->post('show/{plot}', 'show');
-		$router->post('update/{plot}', 'update');
-		$router->post('delete/{plot}', 'delete');
+		$router->post('show/{plot}', 'show')->middleware('can:view,plot');
+		$router->post('update/{plot}', 'update')->middleware('can:update,plot');
+		$router->post('delete/{plot}', 'delete')->middleware('can:delete,plot');
 
 	});

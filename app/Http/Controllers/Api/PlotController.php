@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\CheckUserAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PlotResource;
 use App\Models\Garden;
@@ -12,7 +11,7 @@ use Illuminate\Http\Request;
 
 class PlotController extends Controller
 {
-	public function list(Request $request, CheckUserAuth $checkUserAuth)
+	public function list(Request $request)
 	{
 		$request->validate([
 			'garden_uuid' => [ 'required', 'uuid' ]
@@ -21,13 +20,13 @@ class PlotController extends Controller
 		/** @var Garden $garden */
 		$garden = Garden::find($request->input('garden_uuid'));
 
-		$checkUserAuth($garden);
+		$this->authorize('viewAny', [ Plot::class, $garden ]);
 
 		return PlotResource::collection($garden->plots);
 	}
 
 
-	public function store(Request $request, CheckUserAuth $checkUserAuth)
+	public function store(Request $request)
 	{
 		$validated = $request->validate([
 			'garden_uuid' => [ 'required', 'uuid' ],
@@ -42,7 +41,7 @@ class PlotController extends Controller
 		/** @var Garden $garden */
 		$garden = Garden::find($request->input('garden_uuid'));
 
-		$checkUserAuth($garden);
+		$this->authorize('create', [ Plot::class, $garden ]);
 
 		/** @var PlantingMethod $planting_method */
 		$planting_method = PlantingMethod::find($request->input('planting_method_uuid'));
@@ -56,15 +55,13 @@ class PlotController extends Controller
 	}
 
 
-	public function show(Plot $plot, CheckUserAuth $checkUserAuth)
+	public function show(Plot $plot)
 	{
-		$checkUserAuth($plot);
-
 		return PlotResource::make($plot);
 	}
 
 
-	public function update(Request $request, Plot $plot, CheckUserAuth $checkUserAuth)
+	public function update(Request $request, Plot $plot)
 	{
 		$validated = $request->validate([
 			'name' => [ 'required', 'string' ],
@@ -74,18 +71,14 @@ class PlotController extends Controller
 			'ph' => [ 'nullable', 'numeric' ],
 		]);
 
-		$checkUserAuth($plot);
-
 		$plot->update($validated);
 
 		return PlotResource::make($plot);
 	}
 
 
-	public function delete(Plot $plot, CheckUserAuth $checkUserAuth)
+	public function delete(Plot $plot)
 	{
-		$checkUserAuth($plot);
-
 		$plot->delete();
 
 		return response()->noContent();

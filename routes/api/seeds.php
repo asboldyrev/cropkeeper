@@ -11,8 +11,8 @@ Route
 
 		$router->post('list', 'list');
 		$router->post('store', 'store');
-		$router->post('show/{seed}', 'show');
-		$router->post('update/{seed}', 'update');
-		$router->post('delete/{seed}', 'delete');
+		$router->post('show/{seed}', 'show')->middleware('can:view,seed');
+		$router->post('update/{seed}', 'update')->middleware('can:update,seed');
+		$router->post('delete/{seed}', 'delete')->middleware('can:delete,seed');
 
 	});

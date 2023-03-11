@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\CheckUserAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PlantResource;
 use App\Models\Garden;
@@ -13,7 +12,7 @@ use Illuminate\Http\Request;
 
 class PlantController extends Controller
 {
-	public function list(Request $request, CheckUserAuth $checkUserAuth)
+	public function list(Request $request)
 	{
 		$request->validate([
 			'garden_uuid' => [ 'required', 'uuid' ],
@@ -23,7 +22,7 @@ class PlantController extends Controller
 		/** @var Garden $garden */
 		$garden = Garden::find($request->input('garden_uuid'));
 
-		$checkUserAuth($garden);
+		$this->authorize('viewAny', [ Plant::class, $garden ]);
 
 		$plot_uuid = $request->input('plot_uuid');
 
@@ -44,7 +43,7 @@ class PlantController extends Controller
 	}
 
 
-	public function store(Request $request, CheckUserAuth $checkUserAuth)
+	public function store(Request $request)
 	{
 		$validated = $request->validate([
 			'plot_uuid' => [ 'required', 'uuid' ],
@@ -60,7 +59,7 @@ class PlantController extends Controller
 		/** @var $plot $plot */
 		$plot = Plot::find($request->input('plot_uuid'));
 
-		$checkUserAuth($plot);
+		$this->authorize('viewAny', [ Plant::class, $plot->garden()->first() ]);
 
 		/** @var  $planting_method */
 		$seed = Seed::find($request->input('seed_uuid'));
@@ -74,15 +73,13 @@ class PlantController extends Controller
 	}
 
 
-	public function show(Plant $plant, CheckUserAuth $checkUserAuth)
+	public function show(Plant $plant)
 	{
-		$checkUserAuth($plant);
-
 		return PlantResource::make($plant);
 	}
 
 
-	public function update(Request $request, Plant $plant, CheckUserAuth $checkUserAuth)
+	public function update(Request $request, Plant $plant)
 	{
 		$validated = $request->validate([
 			'name' => [ 'required', 'string' ],
@@ -93,18 +90,14 @@ class PlantController extends Controller
 			'harvested_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
 		]);
 
-		$checkUserAuth($plant);
-
 		$plant->update($validated);
 
 		return PlantResource::make($plant);
 	}
 
 
-	public function delete(Plant $plant, CheckUserAuth $checkUserAuth)
+	public function delete(Plant $plant)
 	{
-		$checkUserAuth($plant);
-
 		$plant->delete();
 
 		return response()->noContent();

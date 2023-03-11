@@ -9,7 +9,7 @@ Route
 	->controller(UserController::class)
 	->group(function (Router $router) {
 
-		$router->post('show/{user}', 'show');
-		$router->post('update/{user}', 'update');
+		$router->post('show/{user}', 'show')->middleware('can:view,user');
+		$router->post('update/{user}', 'update')->middleware('can:update,user');
 
 	});

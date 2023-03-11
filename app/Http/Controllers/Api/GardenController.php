@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\CheckUserAuth;
 use App\Http\Resources\GardenResource;
 use App\Models\Garden;
 use Illuminate\Http\Request;
@@ -36,26 +35,22 @@ class GardenController
 	}
 
 
-	public function show(Garden $garden, CheckUserAuth $checkUserAuth)
+	public function show(Garden $garden)
 	{
-		$checkUserAuth($garden);
-
 		return GardenResource::make($garden);
 	}
 
 
-	public function update(Request $request, Garden $garden, CheckUserAuth $checkUserAuth)
+	public function update(Request $request, Garden $garden)
 	{
-		$checkUserAuth($garden);
 		$garden->update($request->only([ 'name', 'description', 'polygon', 'area' ]));
 
 		return GardenResource::make($garden);
 	}
 
 
-	public function delete(Garden $garden, CheckUserAuth $checkUserAuth)
+	public function delete(Garden $garden)
 	{
-		$checkUserAuth($garden);
 		$garden->delete();
 
 		return response()->noContent();

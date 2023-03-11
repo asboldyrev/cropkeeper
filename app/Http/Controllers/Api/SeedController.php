@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Actions\CheckUserAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SeedResource;
 use App\Models\Garden;
@@ -11,7 +10,7 @@ use Illuminate\Http\Request;
 
 class SeedController extends Controller
 {
-	public function list(Request $request, CheckUserAuth $checkUserAuth)
+	public function list(Request $request)
 	{
 		$request->validate([
 			'garden_uuid' => [ 'required', 'uuid' ]
@@ -20,13 +19,13 @@ class SeedController extends Controller
 		/** @var Garden $garden */
 		$garden = Garden::find($request->input('garden_uuid'));
 
-		$checkUserAuth($garden->users()->get());
+		$this->authorize('viewAny', [ Seed::class, $garden ]);
 
 		return SeedResource::collection($garden->seeds);
 	}
 
 
-	public function store(Request $request, CheckUserAuth $checkUserAuth)
+	public function store(Request $request)
 	{
 		$validated = $request->validate([
 			'garden_uuid' => [ 'required', 'uuid' ],
@@ -41,7 +40,7 @@ class SeedController extends Controller
 		/** @var Garden $garden */
 		$garden = Garden::find($request->input('garden_uuid'));
 
-		$checkUserAuth($garden->users()->get());
+		$this->authorize('create', [ Seed::class, $garden ]);
 
 		$seed = $garden->seeds()->create($validated);
 
@@ -49,18 +48,13 @@ class SeedController extends Controller
 	}
 
 
-	public function show(Seed $seed, CheckUserAuth $checkUserAuth)
+	public function show(Seed $seed)
 	{
-		/** @var Garden $garden */
-		$garden = $seed->garden()->first();
-
-		$checkUserAuth($garden->users()->get());
-
 		return SeedResource::make($seed);
 	}
 
 
-	public function update(Request $request, Seed $seed, CheckUserAuth $checkUserAuth)
+	public function update(Request $request, Seed $seed)
 	{
 		$validated = $request->validate([
 			'name' => [ 'required', 'string' ],
@@ -71,24 +65,14 @@ class SeedController extends Controller
 			'count' => [ 'nullable', 'numeric' ],
 		]);
 
-		/** @var Garden $garden */
-		$garden = $seed->garden()->first();
-
-		$checkUserAuth($garden->users()->get());
-
 		$seed->update($validated);
 
 		return SeedResource::make($seed);
 	}
 
 
-	public function delete(Seed $seed, CheckUserAuth $checkUserAuth)
+	public function delete(Seed $seed)
 	{
-		/** @var Garden $garden */
-		$garden = $seed->garden()->first();
-
-		$checkUserAuth($garden->users()->get());
-
 		$seed->delete();
 
 		return response()->noContent();
