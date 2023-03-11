@@ -48,6 +48,11 @@ class Plant extends Model
 	}
 
 
+	public function harvests():HasMany {
+		return $this->hasMany(Harvest::class);
+	}
+
+
 	public function plantCares():HasMany {
 		return $this->hasMany(PlantCare::class);
 	}
