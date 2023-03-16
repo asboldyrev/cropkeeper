@@ -1,0 +1,15 @@
+@import './light-theme.scss';
+@import './dark-theme.scss';
+
+$blue:    hsl(225 27% 51%);
+$indigo:  hsl(263 51% 51%); // temp
+$purple:  hsl(265 89% 78%);
+$pink:    hsl(330 67% 52%); // temp
+$red:     hsl(0 100% 67%);
+$orange:  hsl(31 100% 71%);
+$yellow:  hsl(65 92% 76%);
+$green:   hsl(135 94% 65%);
+$teal:    hsl(162 73% 46%); // temp
+$cyan:    hsl(191 97% 77%);
+
+@import 'bootstrap/scss/bootstrap.scss';
