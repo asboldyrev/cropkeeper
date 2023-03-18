@@ -1,9 +1,9 @@
 <template>
-	<router-view></router-view>
+	Map
 </template>
 
 <script setup>
-	//
+
 </script>
 
 <style lang="scss" scoped>
