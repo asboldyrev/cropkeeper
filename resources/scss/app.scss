@@ -13,3 +13,7 @@ $teal:    hsl(162 73% 46%); // temp
 $cyan:    hsl(191 97% 77%);
 
 @import 'bootstrap/scss/bootstrap.scss';
+
+html, body, #app {
+	height: 100vh;
+}
