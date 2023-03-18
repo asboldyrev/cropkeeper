@@ -1,9 +1,18 @@
 <template>
-	Map
+	<DesktopAppTemplate v-if="!isMobile">
+		<div>fgdsfgdf</div>
+	</DesktopAppTemplate>
+	<MobileAppTemplate v-else>
+		<div>fgdsfgdf</div>
+	</MobileAppTemplate>
 </template>
 
 <script setup>
+	import { inject } from "vue";
+	import DesktopAppTemplate from "../Layouts/DesktopAppTemplate.vue";
+	import MobileAppTemplate from "../Layouts/MobileAppTemplate.vue";
 
+	const isMobile = inject('isMobile')
 </script>
 
 <style lang="scss" scoped>
