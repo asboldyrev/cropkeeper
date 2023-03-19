@@ -12,8 +12,11 @@
 			<div class="text-end mb-3">
 				<ThemeSwitcher />
 
-				<button class="btn btn-outline-secondary btn-sm ms-3">
+				<button class="btn btn-outline-secondary btn-sm ms-3 position-relative">
 					<i class="ri-notification-2-line"></i>
+					<span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+						<span class="visually-hidden">New alerts</span>
+					</span>
 				</button>
 
 				<img src="https://avatars.githubusercontent.com/u/15995789?s=96&v=4" alt="" width="32" height="32" class="rounded-circle ms-3">
