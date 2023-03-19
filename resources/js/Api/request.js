@@ -14,6 +14,10 @@ export default {
 			'X-XSRF-TOKEN': getCookie('XSRF-TOKEN')
 		};
 
+		if(token) {
+			headers['Authorization'] = `Bearer ${ token }`;
+		}
+
 		const data = {
 			method: 'post',
 			headers: headers,
@@ -22,12 +26,8 @@ export default {
 
 		data.body = JSON.stringify(body);
 
-		if(token) {
-			data.headers['Authorization'] = `Bearer ${ token }`;
-		}
-
 		return await fetch(`api/${uri}`, data)
-			.then(response => response.json())
+			.then(response => (response.status != 204) ? response.json() : {})
 			.then(response => {
 				// if (useCheckErrorInResponse(response)) {
 				// 	return Promise.reject(new Error(response?.error?.message || response.status.message));
