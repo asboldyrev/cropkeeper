@@ -23,7 +23,6 @@ import { onBeforeMount, ref } from "vue";
 		selectedTheme.value = themeName
 	}
 
-
 	onBeforeMount(() => {
 		const themeName = localStorage.getItem('theme')
 		if(themeName) {

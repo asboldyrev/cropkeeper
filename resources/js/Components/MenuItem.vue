@@ -2,14 +2,18 @@
 	<span class="nav-link disabled" aria-current="page" v-if="selected">
 		<i class="ri-lg me-1" :class="icon"></i> {{ name }}
 	</span>
-	<a class="nav-link" aria-current="page" href="#" v-else>
+	<router-link class="nav-link" aria-current="page" :to="{ name: route }" v-else>
 		<i class="ri-lg me-1" :class="icon"></i> {{ name }}
-	</a>
+	</router-link>
 </template>
 
 <script setup>
 	const props = defineProps({
 		name: {
+			type: String,
+			require: true
+		},
+		route: {
 			type: String,
 			require: true
 		},

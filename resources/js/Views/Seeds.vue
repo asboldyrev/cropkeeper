@@ -1,9 +1,9 @@
 <template>
 	<MobileAppTemplate v-if="isMobile">
-		map
+		seeds
 	</MobileAppTemplate>
 	<DesktopAppTemplate v-else>
-		map
+		seeds
 	</DesktopAppTemplate>
 </template>
 
@@ -13,6 +13,7 @@
 	import MobileAppTemplate from "../Layouts/MobileAppTemplate.vue";
 
 	const isMobile = inject('isMobile')
+
 </script>
 
 <style lang="scss" scoped>
