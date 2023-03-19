@@ -32,8 +32,8 @@ class SeedController extends Controller
 			'name' => [ 'required', 'string' ],
 			'manufacturer' => [ 'nullable', 'string' ],
 			'description' => [ 'nullable', 'string' ],
-			'bought_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
-			'expiration_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
+			'bought_at' => [ 'nullable', 'date_format:Y-m-d' ],
+			'expiration_at' => [ 'nullable', 'date_format:Y-m-d' ],
 			'count' => [ 'nullable', 'numeric' ],
 		]);
 
@@ -60,8 +60,8 @@ class SeedController extends Controller
 			'name' => [ 'required', 'string' ],
 			'manufacturer' => [ 'nullable', 'string' ],
 			'description' => [ 'nullable', 'string' ],
-			'bought_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
-			'expiration_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
+			'bought_at' => [ 'nullable', 'date_format:Y-m-d' ],
+			'expiration_at' => [ 'nullable', 'date_format:Y-m-d' ],
 			'count' => [ 'nullable', 'numeric' ],
 		]);
 
