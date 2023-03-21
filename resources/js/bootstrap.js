@@ -1,5 +1,6 @@
 import './bootstrap/dayJs'
 import './bootstrap/router'
+import 'remixicon/fonts/remixicon.css'
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
