@@ -10,6 +10,7 @@ const pinia = createPinia()
 const app = createApp(App)
 
 app
+	.provide('dayJs', dayjs)
 	.use(router)
 	.use(pinia)
 	.mount('#app')

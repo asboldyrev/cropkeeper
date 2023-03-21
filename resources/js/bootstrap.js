@@ -1,3 +1,4 @@
+import './bootstrap/dayJs'
 import './bootstrap/router'
 
 /**
