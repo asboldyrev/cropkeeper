@@ -14,6 +14,17 @@ class SeedResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+		return [
+			'uuid' => $this->uuid,
+			'name' => $this->name,
+			'description' => $this->description,
+			'manufacturer' => $this->manufacturer,
+			'count' => $this->count,
+			'garden_uuid' => $this->garden_uuid,
+			'bought_at' => $this->bought_at?->toDateString(),
+			'expiration_at' => $this->expiration_at?->toDateString(),
+			'created_at' => $this->created_at,
+			'updated_at' => $this->updated_at,
+		];
     }
 }

@@ -120,7 +120,22 @@
 	}
 
 	function updateSeed() {
+		const data = {
+			name: currentSeed.value.name,
+			manufacturer: currentSeed.value.manufacturer,
+			description: currentSeed.value.description,
+			bought_at: currentSeed.value.bought_at,
+			expiration_at: currentSeed.value.expiration_at,
+			count: currentSeed.value.count,
+			garden_uuid: store.garden.uuid
+		}
 
+		seedsApi
+			.update(currentSeed.value.uuid, data)
+			.then(response => {
+				showModal.value = false
+				store.syncSeeds()
+			})
 	}
 
 	function deleteSeed(seed) {
