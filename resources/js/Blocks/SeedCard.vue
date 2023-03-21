@@ -2,9 +2,9 @@
 	<div class="card">
 		<img src="https://placehold.co/600x400" alt="">
 		<div class="card-body">
-			<h6>{{ seed.name }}<span class="text-muted fw-normal" v-if="seed.manufacturer"> ({{ seed.manufacturer }})</span></h6>
-			<p :class="{'mb-0': !seed.expiration_at}"><strong>Количество</strong>: {{ seed.count }} {{ unit }}</p>
-			<p v-if="seed.expiration_at"><strong>Годен до</strong>: {{ dayjs(props.seed.expiration_at).format('LL') }}</p>
+			<h6 class="mb-3">{{ seed.name }}<span class="text-muted fw-normal" v-if="seed.manufacturer"> ({{ seed.manufacturer }})</span></h6>
+			<p class="mb-0"><strong>Количество</strong>: {{ seed.count }} {{ unit }}</p>
+			<p class="mb-0" v-if="seed.expiration_at"><strong>Годен до</strong>: {{ dayjs(props.seed.expiration_at).format('LL') }}</p>
 		</div>
 		<div class="card-footer">
 			<IconButton type="primary" icon="ri-pencil-line" @click="$emit('edit', seed)">Редактировать</IconButton>
