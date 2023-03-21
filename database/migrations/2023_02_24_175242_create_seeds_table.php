@@ -16,8 +16,8 @@ return new class extends Migration
 			$table->string('name');
 			$table->string('manufacturer')->nullable();
 			$table->text('description')->nullable();
-			$table->timestamp('bought_at')->nullable();
-			$table->timestamp('expiration_at')->nullable();
+			$table->date('bought_at')->nullable();
+			$table->date('expiration_at')->nullable();
 			$table->unsignedSmallInteger('count')->default(0);
 			$table->foreignUuid('garden_uuid')->constrained( column: 'uuid')->cascadeOnDelete();
 			$table->timestamps();

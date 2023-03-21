@@ -22,8 +22,8 @@ class Seed extends Model
 	];
 
 	protected $casts = [
-		'bought_at' => 'datetime',
-		'expiration_at' => 'datetime',
+		'bought_at' => 'date',
+		'expiration_at' => 'date',
 		'count' => 'integer',
 	];
 
