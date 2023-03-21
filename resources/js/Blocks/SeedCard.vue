@@ -4,7 +4,7 @@
 		<div class="card-body">
 			<h6>{{ seed.name }}</h6>
 			<p :class="{'mb-0': !seed.expiration_at}"><strong>Количество</strong>: {{ seed.count }}</p>
-			<p v-if="seed.expiration_at"><strong>Годен до</strong>: {{ seed.expiration_at }}</p>
+			<p v-if="seed.expiration_at"><strong>Годен до</strong>: {{ dayjs(props.seed.expiration_at).format('LL') }}</p>
 		</div>
 		<div class="card-footer">
 			<IconButton type="primary" icon="ri-pencil-line" @click="$emit('edit', seed)">Редактировать</IconButton>
@@ -16,6 +16,9 @@
 <script setup>
 	import IconButton from '../Components/IconButton.vue'
 	import DeleteButton from '../Components/DeleteButton.vue'
+	import { inject } from 'vue'
+
+	const dayjs = inject('dayJs')
 
 	const props = defineProps({
 		seed: {
