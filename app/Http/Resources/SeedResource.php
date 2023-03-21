@@ -20,6 +20,7 @@ class SeedResource extends JsonResource
 			'description' => $this->description,
 			'manufacturer' => $this->manufacturer,
 			'count' => $this->count,
+			'unit' => $this->unit,
 			'garden_uuid' => $this->garden_uuid,
 			'bought_at' => $this->bought_at?->toDateString(),
 			'expiration_at' => $this->expiration_at?->toDateString(),

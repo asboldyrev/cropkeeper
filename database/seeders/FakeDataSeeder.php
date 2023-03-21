@@ -36,7 +36,8 @@ class FakeDataSeeder extends Seeder
 		// Seed
 		$seed = $garden->seeds()->create([
 			'name' => 'Семена',
-			'count' => 10
+			'count' => 10,
+			'unit' => 'quantity'
 		]);
 
 		// Plant

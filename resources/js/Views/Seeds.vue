@@ -36,7 +36,14 @@
 			</div>
 			<div class="mb-3">
 				<label for="count" class="form-label">Количество</label>
-				<input type="number" min="0" class="form-control" id="count" v-model="currentSeed.count">
+				<input type="number" min="0" :step="stepCount" class="form-control" id="count" v-model="currentSeed.count">
+			</div>
+			<div class="mb-3">
+				<label for="count" class="form-label">Единицы измерения</label>
+				<select class="form-select" id="count" v-model="currentSeed.unit">
+					<option value="grams">гр.</option>
+					<option value="quantity">шт.</option>
+				</select>
 			</div>
 		</template>
 		<template #footer>
@@ -53,7 +60,7 @@
 </template>
 
 <script setup>
-	import { inject, onBeforeMount, ref } from "vue"
+	import { computed, inject, onBeforeMount, ref } from "vue"
 	import DesktopAppTemplate from "../Layouts/DesktopAppTemplate.vue"
 	import MobileAppTemplate from "../Layouts/MobileAppTemplate.vue"
 	import { useStore } from "../store"
@@ -74,6 +81,15 @@
 		bought_at: null,
 		expiration_at: null,
 		count: 0,
+		unit: 'grams'
+	})
+
+	const stepCount = computed(() => {
+		if(currentSeed.value.unit == 'quantity') {
+			return 1
+		}
+
+		return 0.01
 	})
 
 	function storeSeed() {
@@ -84,7 +100,8 @@
 			bought_at: currentSeed.value.bought_at,
 			expiration_at: currentSeed.value.expiration_at,
 			count: currentSeed.value.count,
-			garden_uuid: store.garden.uuid
+			garden_uuid: store.garden.uuid,
+			unit: currentSeed.value.unit,
 		}
 
 		seedsApi
@@ -103,6 +120,7 @@
 		currentSeed.value.bought_at = null
 		currentSeed.value.expiration_at = null
 		currentSeed.value.count = 0
+		currentSeed.value.unit = 'grams'
 
 		showModal.value = true
 	}
@@ -115,6 +133,7 @@
 		currentSeed.value.bought_at = seed.bought_at
 		currentSeed.value.expiration_at = seed.expiration_at
 		currentSeed.value.count = seed.count
+		currentSeed.value.unit = seed.unit
 
 		showModal.value = true
 	}
@@ -127,7 +146,8 @@
 			bought_at: currentSeed.value.bought_at,
 			expiration_at: currentSeed.value.expiration_at,
 			count: currentSeed.value.count,
-			garden_uuid: store.garden.uuid
+			garden_uuid: store.garden.uuid,
+			unit: currentSeed.value.unit
 		}
 
 		seedsApi

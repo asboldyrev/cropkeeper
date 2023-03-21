@@ -3,7 +3,7 @@
 		<img src="https://placehold.co/600x400" alt="">
 		<div class="card-body">
 			<h6>{{ seed.name }}<span class="text-muted fw-normal" v-if="seed.manufacturer"> ({{ seed.manufacturer }})</span></h6>
-			<p :class="{'mb-0': !seed.expiration_at}"><strong>Количество</strong>: {{ seed.count }}</p>
+			<p :class="{'mb-0': !seed.expiration_at}"><strong>Количество</strong>: {{ seed.count }} {{ unit }}</p>
 			<p v-if="seed.expiration_at"><strong>Годен до</strong>: {{ dayjs(props.seed.expiration_at).format('LL') }}</p>
 		</div>
 		<div class="card-footer">
@@ -16,7 +16,7 @@
 <script setup>
 	import IconButton from '../Components/IconButton.vue'
 	import DeleteButton from '../Components/DeleteButton.vue'
-	import { inject } from 'vue'
+	import { computed, inject } from 'vue'
 
 	const dayjs = inject('dayJs')
 
@@ -28,6 +28,14 @@
 	})
 
 	defineEmits([ 'edit', 'delete' ])
+
+	const unit = computed(() => {
+		if(props.seed.unit == 'grams') {
+			return 'гр.'
+		}
+
+		return 'шт.'
+	})
 </script>
 
 <style lang="scss" scoped>

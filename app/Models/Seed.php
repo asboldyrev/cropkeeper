@@ -19,6 +19,7 @@ class Seed extends Model
 		'bought_at',
 		'expiration_at',
 		'count',
+		'unit',
 	];
 
 	protected $casts = [
