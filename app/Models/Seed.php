@@ -25,7 +25,7 @@ class Seed extends Model
 	protected $casts = [
 		'bought_at' => 'date',
 		'expiration_at' => 'date',
-		'count' => 'integer',
+		'count' => 'float',
 	];
 
 	protected $primaryKey = 'uuid';

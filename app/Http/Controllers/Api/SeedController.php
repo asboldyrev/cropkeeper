@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\SeedUnit;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SeedResource;
 use App\Models\Garden;
 use App\Models\Seed;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 
 class SeedController extends Controller
 {
@@ -35,6 +37,7 @@ class SeedController extends Controller
 			'bought_at' => [ 'nullable', 'date_format:Y-m-d' ],
 			'expiration_at' => [ 'nullable', 'date_format:Y-m-d' ],
 			'count' => [ 'nullable', 'numeric' ],
+			'unit' => [new Enum(SeedUnit::class)],
 		]);
 
 		/** @var Garden $garden */
@@ -63,6 +66,7 @@ class SeedController extends Controller
 			'bought_at' => [ 'nullable', 'date_format:Y-m-d' ],
 			'expiration_at' => [ 'nullable', 'date_format:Y-m-d' ],
 			'count' => [ 'nullable', 'numeric' ],
+			'unit' => [new Enum(SeedUnit::class)],
 		]);
 
 		$seed->update($validated);
