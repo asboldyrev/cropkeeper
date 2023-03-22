@@ -1,8 +1,8 @@
-import { useStore } from "@/store";
+import { useToken } from "@/store/token";
 
 export default {
 	async request(uri, body = {}, token) {
-		const store = useStore();
+		const store = useToken();
 
 		if(!token) {
 			token = store.token;

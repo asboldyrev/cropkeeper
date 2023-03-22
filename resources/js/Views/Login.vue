@@ -20,12 +20,12 @@
 
 <script setup>
 	import { ref } from "vue";
-	import authApi from '../Api/auth'
-	import { useStore } from '../store'
+	import authApi from '@/Api/auth'
+	import { useToken } from '@/store/token'
 	import { useRouter } from 'vue-router'
-	import AuthLayout from "../Layouts/AuthLayout.vue";
+	import AuthLayout from "@/Layouts/AuthLayout.vue";
 
-	const store = useStore()
+	const store = useToken()
 	const router = useRouter()
 
 	const login = ref('')

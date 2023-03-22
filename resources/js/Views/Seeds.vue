@@ -4,8 +4,8 @@
 	</MobileAppTemplate>
 	<DesktopAppTemplate v-else>
 		<IconButton class="mb-3" type="primary" icon="ri-add-line" outline @click="createSeed">Добавить</IconButton>
-		<div class="row" v-if="store.seeds.length">
-			<div class="col-sm col-md-4 col-lg-3" v-for="seed in store.seeds" :key="seed.uuid">
+		<div class="row" v-if="seedStore.seeds.length">
+			<div class="col-sm col-md-4 col-lg-3" v-for="seed in seedStore.seeds" :key="seed.uuid">
 				<SeedCard :seed="seed" @edit="editSeed" @delete="deleteSeed" />
 			</div>
 		</div>
@@ -63,13 +63,15 @@
 	import { computed, inject, onBeforeMount, ref } from "vue"
 	import DesktopAppTemplate from "../Layouts/DesktopAppTemplate.vue"
 	import MobileAppTemplate from "../Layouts/MobileAppTemplate.vue"
-	import { useStore } from "../store"
+	import { useSeeds } from "@/store/seeds"
+	import { useGardens } from "@/store/gardens"
 	import SeedCard from '../Blocks/SeedCard.vue'
 	import IconButton from '../Components/IconButton.vue'
 	import Modal from "../Blocks/Modal.vue"
 	import seedsApi from '../Api/seeds'
 
-	const store = useStore()
+	const seedStore = useSeeds()
+	const gardenStore = useGardens()
 	const isMobile = inject('isMobile')
 	const showModal = ref(false)
 
@@ -100,7 +102,7 @@
 			bought_at: currentSeed.value.bought_at,
 			expiration_at: currentSeed.value.expiration_at,
 			count: currentSeed.value.count,
-			garden_uuid: store.garden.uuid,
+			garden_uuid: gardenStore.garden.uuid,
 			unit: currentSeed.value.unit,
 		}
 
@@ -108,7 +110,7 @@
 			.store(data)
 			.then(response => {
 				showModal.value = false
-				store.syncSeeds()
+				seedStore.syncSeeds()
 			})
 	}
 
@@ -146,7 +148,7 @@
 			bought_at: currentSeed.value.bought_at,
 			expiration_at: currentSeed.value.expiration_at,
 			count: currentSeed.value.count,
-			garden_uuid: store.garden.uuid,
+			garden_uuid: gardenStore.garden.uuid,
 			unit: currentSeed.value.unit
 		}
 
@@ -154,7 +156,7 @@
 			.update(currentSeed.value.uuid, data)
 			.then(response => {
 				showModal.value = false
-				store.syncSeeds()
+				seedStore.syncSeeds()
 			})
 	}
 
@@ -162,13 +164,11 @@
 		seedsApi
 			.delete(seed.uuid)
 			.then(response => {
-				store.syncSeeds()
+				seedStore.syncSeeds()
 			})
 	}
 
-	onBeforeMount(() => {
-		store.syncSeeds()
-	})
+	onBeforeMount(seedStore.syncSeeds)
 
 </script>
 

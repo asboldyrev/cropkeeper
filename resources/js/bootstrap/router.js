@@ -1,6 +1,6 @@
 import routes from '../routes'
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStore } from '../store'
+import { useToken } from '@/store/token'
 import authApi from '../Api/auth'
 
 const router = createRouter({
@@ -9,7 +9,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-	const store = useStore()
+	const store = useToken()
 
 	const isLoginRoute = to.name == 'login'
 	let localToken = localStorage.getItem('token')

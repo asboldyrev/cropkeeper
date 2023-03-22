@@ -1,6 +1,7 @@
+import { defineStore } from 'pinia';
 import { computed, ref } from 'vue'
 
-export function useToken() {
+export const useToken = defineStore('token', () => {
 	const _token = ref('');
 
 	const setToken = (newToken) => {
@@ -22,4 +23,4 @@ export function useToken() {
 		setToken,
 		resetToken
 	}
-}
+})

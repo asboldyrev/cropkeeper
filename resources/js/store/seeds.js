@@ -1,9 +1,10 @@
 import { computed, ref } from "vue"
-import { useStore } from '../store'
+import { useGardens } from '@/store/gardens'
 import seedsApi from '../Api/seeds'
+import { defineStore } from "pinia"
 
-export function useSeeds() {
-	const store = useStore()
+export const useSeeds = defineStore('seeds', () => {
+	const store = useGardens()
 	const _seeds = ref([])
 
 	function syncSeeds() {
@@ -25,4 +26,4 @@ export function useSeeds() {
 		seeds,
 		syncSeeds
 	}
-}
+})

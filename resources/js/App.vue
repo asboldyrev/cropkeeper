@@ -4,9 +4,11 @@
 
 <script setup>
 	import { computed, onBeforeMount, provide, ref } from "vue"
-	import { useStore } from "./store"
+	import { useToken } from "@/store/token"
+	import { useGardens } from "@/store/gardens"
 
-	const store = useStore()
+	const tokenStore = useToken()
+	const gardenStore = useGardens()
 	const isMobile = ref(false)
 
 	provide('isMobile', isMobile)
@@ -24,11 +26,11 @@
 	async function loadData() {
 		let try_load = 0
 		// ждем, пока переменная myVariable не будет готова
-		while (!store.token && try_load < 10) {
+		while (!tokenStore.token && try_load < 10) {
 			await new Promise(resolve => setTimeout(resolve, 100)); // ждем 1 секунду
 			try_load++
 		}
-		store.syncGardens()
+		gardenStore.syncGardens()
 	}
 
 	onBeforeMount(() => {
