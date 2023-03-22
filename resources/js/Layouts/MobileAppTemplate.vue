@@ -18,8 +18,8 @@
 </template>
 
 <script setup>
-	import Menu from "../Blocks/Menu.vue";
-	import ThemeSwitcher from '../Blocks/ThemeSwitcher.vue'
+	import Menu from "@/Blocks/Menu.vue";
+	import ThemeSwitcher from '@/Blocks/ThemeSwitcher.vue'
 </script>
 
 <style lang="scss" scoped>

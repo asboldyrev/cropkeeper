@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import gardenApi from "../Api/garden";
+import gardenApi from "@/Api/garden";
 
 export const useGardens = defineStore('gardens', () => {
 	const _gardens = ref([])

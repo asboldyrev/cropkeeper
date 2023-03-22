@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-	import MenuItem from '../Components/MenuItem.vue'
+	import MenuItem from '@/Components/MenuItem.vue'
 	import { useRoute } from 'vue-router'
 
 	const route = useRoute()

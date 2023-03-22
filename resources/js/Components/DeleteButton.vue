@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-	import IconButton from './IconButton.vue'
+	import IconButton from '@/Components/IconButton.vue'
 
 	const props = defineProps({
 		confirmText: {

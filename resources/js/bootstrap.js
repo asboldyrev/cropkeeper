@@ -1,5 +1,5 @@
-import './bootstrap/dayJs'
-import './bootstrap/router'
+import '@/bootstrap/dayJs'
+import '@/bootstrap/router'
 import 'remixicon/fonts/remixicon.css'
 
 /**

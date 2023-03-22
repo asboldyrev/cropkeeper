@@ -61,14 +61,14 @@
 
 <script setup>
 	import { computed, inject, onBeforeMount, ref } from "vue"
-	import DesktopAppTemplate from "../Layouts/DesktopAppTemplate.vue"
-	import MobileAppTemplate from "../Layouts/MobileAppTemplate.vue"
+	import DesktopAppTemplate from "@/Layouts/DesktopAppTemplate.vue"
+	import MobileAppTemplate from "@/Layouts/MobileAppTemplate.vue"
 	import { useSeeds } from "@/store/seeds"
 	import { useGardens } from "@/store/gardens"
-	import SeedCard from '../Blocks/SeedCard.vue'
-	import IconButton from '../Components/IconButton.vue'
-	import Modal from "../Blocks/Modal.vue"
-	import seedsApi from '../Api/seeds'
+	import SeedCard from '@/Blocks/SeedCard.vue'
+	import IconButton from '@/Components/IconButton.vue'
+	import Modal from "@/Blocks/Modal.vue"
+	import seedsApi from '@/Api/seeds'
 
 	const seedStore = useSeeds()
 	const gardenStore = useGardens()

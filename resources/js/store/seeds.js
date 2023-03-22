@@ -1,6 +1,6 @@
 import { computed, ref } from "vue"
 import { useGardens } from '@/store/gardens'
-import seedsApi from '../Api/seeds'
+import seedsApi from '@/Api/seeds'
 import { defineStore } from "pinia"
 
 export const useSeeds = defineStore('seeds', () => {

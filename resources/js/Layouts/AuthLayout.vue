@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-	import ThemeSwitcher from '../Blocks/ThemeSwitcher.vue'
+	import ThemeSwitcher from '@/Blocks/ThemeSwitcher.vue'
 
 </script>
 

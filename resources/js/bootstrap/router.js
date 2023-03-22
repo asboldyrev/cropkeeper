@@ -1,7 +1,7 @@
-import routes from '../routes'
+import routes from '@/routes'
 import { createRouter, createWebHistory } from 'vue-router'
 import { useToken } from '@/store/token'
-import authApi from '../Api/auth'
+import authApi from '@/Api/auth'
 
 const router = createRouter({
 	history: createWebHistory(),

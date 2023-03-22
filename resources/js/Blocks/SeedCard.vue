@@ -14,8 +14,8 @@
 </template>
 
 <script setup>
-	import IconButton from '../Components/IconButton.vue'
-	import DeleteButton from '../Components/DeleteButton.vue'
+	import IconButton from '@/Components/IconButton.vue'
+	import DeleteButton from '@/Components/DeleteButton.vue'
 	import { computed, inject } from 'vue'
 
 	const dayjs = inject('dayJs')

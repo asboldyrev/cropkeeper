@@ -9,8 +9,8 @@
 
 <script setup>
 	import { inject } from "vue";
-	import DesktopAppTemplate from "../Layouts/DesktopAppTemplate.vue";
-	import MobileAppTemplate from "../Layouts/MobileAppTemplate.vue";
+	import DesktopAppTemplate from "@/Layouts/DesktopAppTemplate.vue";
+	import MobileAppTemplate from "@/Layouts/MobileAppTemplate.vue";
 
 	const isMobile = inject('isMobile')
 

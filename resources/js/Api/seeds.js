@@ -1,4 +1,4 @@
-import api from './request'
+import api from '@/Api/request'
 
 export default {
 	list(gardenUuid) {

@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue";
+	import { onBeforeMount, ref } from "vue";
 
 	const selectedTheme = ref(null);
 
