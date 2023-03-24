@@ -1,9 +1,9 @@
-import Calendar from '@/Views/Calendar.vue'
-import Garden from '@/Views/Garden.vue'
-import Harvest from '@/Views/Harvest.vue'
-import Login from '@/Views/Login.vue'
-import Map from '@/Views/Map.vue'
-import Seeds from '@/Views/Seeds.vue'
+import Calendar from '@/Pages/Calendar.vue'
+import Garden from '@/Pages/Garden.vue'
+import Harvest from '@/Pages/Harvest.vue'
+import Login from '@/Pages/Login.vue'
+import Map from '@/Pages/Map.vue'
+import Seeds from '@/Pages/Seeds.vue'
 
 export default [
 	{
