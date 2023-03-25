@@ -24,8 +24,8 @@ class Plant extends Model
 	protected $casts = [
 		'is_seedling' => 'boolean',
 		'is_transplanted' => 'boolean',
-		'planted_at' => 'datetime',
-		'harvested_at' => 'datetime',
+		'planted_at' => 'date',
+		'harvested_at' => 'date',
 	];
 
 	protected $primaryKey = 'uuid';

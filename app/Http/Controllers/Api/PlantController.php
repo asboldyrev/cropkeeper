@@ -44,8 +44,8 @@ class PlantController extends Controller
 			'description' => [ 'nullable', 'string' ],
 			'is_seedling' => [ 'nullable', 'boolean' ],
 			'is_transplanted' => [ 'nullable', 'boolean' ],
-			'planted_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
-			'harvested_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
+			'planted_at' => [ 'nullable', 'date_format:Y-m-d' ],
+			'harvested_at' => [ 'nullable', 'date_format:Y-m-d' ],
 		]);
 
 		/** @var $plot $plot */
@@ -79,8 +79,8 @@ class PlantController extends Controller
 			'description' => [ 'nullable', 'string' ],
 			'is_seedling' => [ 'nullable', 'boolean' ],
 			'is_transplanted' => [ 'nullable', 'boolean' ],
-			'planted_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
-			'harvested_at' => [ 'nullable', 'date_format:Y-m-d\\TH:i:sP' ],
+			'planted_at' => [ 'nullable', 'date_format:Y-m-d' ],
+			'harvested_at' => [ 'nullable', 'date_format:Y-m-d' ],
 		]);
 
 		$plant->update($validated);

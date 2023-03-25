@@ -17,8 +17,8 @@ return new class extends Migration
 			$table->text('description')->nullable();
 			$table->boolean('is_seedling')->index()->default(false);
 			$table->boolean('is_transplanted')->index()->default(false);
-			$table->timestamp('planted_at')->nullable();
-			$table->timestamp('harvested_at')->nullable();
+			$table->date('planted_at')->nullable();
+			$table->date('harvested_at')->nullable();
 			$table->foreignUuid('seed_uuid')->nullable()->constrained(column: 'uuid')->nullOnDelete();
 			$table->foreignUuid('plot_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
 			$table->foreignUuid('garden_uuid')->constrained( column: 'uuid')->cascadeOnDelete();
