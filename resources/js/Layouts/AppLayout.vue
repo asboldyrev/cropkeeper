@@ -9,17 +9,22 @@
 		</div>
 
 		<div class="main-content m-3">
-			<div class="text-end mb-3">
-				<ThemeSwitcher />
+			<div class="row mb-4">
+				<div class="col-6">
+					<h3>{{ gardenStore.garden?.name }}</h3>
+				</div>
+				<div class="col-6 text-end">
+					<ThemeSwitcher />
 
-				<button class="btn btn-outline-secondary btn-sm ms-3 position-relative">
-					<i class="ri-notification-2-line"></i>
-					<span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
-						<span class="visually-hidden">New alerts</span>
-					</span>
-				</button>
+					<button class="btn btn-outline-secondary btn-sm ms-3 position-relative">
+						<i class="ri-notification-2-line"></i>
+						<span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+							<span class="visually-hidden">New alerts</span>
+						</span>
+					</button>
 
-				<img src="https://avatars.githubusercontent.com/u/15995789?s=96&v=4" alt="" width="32" height="32" class="rounded-circle ms-3">
+					<img src="https://avatars.githubusercontent.com/u/15995789?s=96&v=4" alt="" width="32" height="32" class="rounded-circle ms-3">
+				</div>
 			</div>
 			<router-view></router-view>
 		</div>
@@ -29,6 +34,9 @@
 <script setup>
 	import Menu from "@/Blocks/Menu.vue";
 	import ThemeSwitcher from '@/Blocks/ThemeSwitcher.vue'
+	import { useGardens } from "@/store/gardens";
+
+	const gardenStore = useGardens()
 </script>
 
 <style lang="scss" scoped>
