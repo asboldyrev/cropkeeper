@@ -1,5 +1,6 @@
 import Calendar from '@/Pages/Calendar.vue'
-import Garden from '@/Pages/Garden.vue'
+import Plots from '@/Pages/Plots.vue'
+import Plants from '@/Pages/Plants.vue'
 import Harvest from '@/Pages/Harvest.vue'
 import Login from '@/Pages/Login.vue'
 import Map from '@/Pages/Map.vue'
@@ -25,9 +26,15 @@ export default [
 				meta: { title: 'Календарь' }
 			},
 			{
-				path: '/garden',
-				component: Garden,
-				name: 'garden',
+				path: '/plants',
+				component: Plants,
+				name: 'plants',
+				meta: { title: 'Растения' }
+			},
+			{
+				path: '/plots',
+				component: Plots,
+				name: 'plots',
 				meta: { title: 'Участок' }
 			},
 			{

@@ -13,10 +13,16 @@
 			route="calendar"
 		/>
 		<MenuItem
-			name="Участок"
+			name="Растения"
 			icon="ri-plant-line"
-			:selected="route.name == 'garden'"
-			route="garden"
+			:selected="route.name == 'plants'"
+			route="plants"
+		/>
+		<MenuItem
+			name="Участок"
+			icon="ri-shape-line"
+			:selected="route.name == 'plots'"
+			route="plots"
 		/>
 		<MenuItem
 			name="Семена"

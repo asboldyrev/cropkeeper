@@ -1,9 +1,9 @@
 <template>
-	garden
+Plants
 </template>
 
 <script setup>
-	//
+
 </script>
 
 <style lang="scss" scoped>
