@@ -17,3 +17,13 @@ $cyan:    hsl(191 97% 77%);
 html, body, #app {
 	height: 100vh;
 }
+
+
+[role="spinner"] {
+	display: inline !important;
+	position: absolute !important;
+	top: 50% !important;
+	left: 50% !important;
+	right: auto !important;
+	transform: translate(-50%, -50%);
+}
