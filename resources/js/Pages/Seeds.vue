@@ -89,14 +89,8 @@
 
 	function storeSeed() {
 		const data = {
-			name: currentSeed.value.name,
-			manufacturer: currentSeed.value.manufacturer,
-			description: currentSeed.value.description,
-			bought_at: currentSeed.value.bought_at,
-			expiration_at: currentSeed.value.expiration_at,
-			count: currentSeed.value.count,
-			garden_uuid: gardenStore.garden.uuid,
-			unit: currentSeed.value.unit,
+			...currentSeed.value,
+			garden_uuid: gardenStore.garden.uuid
 		}
 
 		seedsApi
@@ -108,41 +102,30 @@
 	}
 
 	function createSeed() {
-		currentSeed.value.uuid = null
-		currentSeed.value.name = ''
-		currentSeed.value.manufacturer = ''
-		currentSeed.value.description = ''
-		currentSeed.value.bought_at = null
-		currentSeed.value.expiration_at = null
-		currentSeed.value.count = 0
-		currentSeed.value.unit = 'grams'
+		currentSeed.value = {
+			uuid: null,
+			name: '',
+			manufacturer: '',
+			description: '',
+			bought_at: null,
+			expiration_at: null,
+			count: 0,
+			unit: 'grams',
+		}
 
 		showModal.value = true
 	}
 
 	function editSeed(seed) {
-		currentSeed.value.uuid = seed.uuid
-		currentSeed.value.name = seed.name
-		currentSeed.value.manufacturer = seed.manufacturer
-		currentSeed.value.description = seed.description
-		currentSeed.value.bought_at = seed.bought_at
-		currentSeed.value.expiration_at = seed.expiration_at
-		currentSeed.value.count = seed.count
-		currentSeed.value.unit = seed.unit
+		currentSeed.value = seed
 
 		showModal.value = true
 	}
 
 	function updateSeed() {
 		const data = {
-			name: currentSeed.value.name,
-			manufacturer: currentSeed.value.manufacturer,
-			description: currentSeed.value.description,
-			bought_at: currentSeed.value.bought_at,
-			expiration_at: currentSeed.value.expiration_at,
-			count: currentSeed.value.count,
-			garden_uuid: gardenStore.garden.uuid,
-			unit: currentSeed.value.unit
+			...currentSeed.value,
+			garden_uuid: gardenStore.garden.uuid
 		}
 
 		seedsApi
@@ -161,7 +144,9 @@
 			})
 	}
 
-	onBeforeMount(seedStore.syncSeeds)
+	onBeforeMount(() => {
+		seedStore.syncSeeds()
+	})
 
 </script>
 
