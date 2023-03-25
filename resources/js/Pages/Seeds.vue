@@ -1,5 +1,6 @@
 <template>
 	<IconButton class="mb-3" type="primary" icon="ri-add-line" outline @click="createSeed">Добавить</IconButton>
+
 	<div class="row" v-if="seedStore.seeds.length">
 		<div class="col-sm col-md-4 col-lg-3" v-for="seed in seedStore.seeds" :key="seed.uuid">
 			<SeedCard :seed="seed" @edit="editSeed" @delete="deleteSeed" />
@@ -65,7 +66,6 @@
 
 	const seedStore = useSeeds()
 	const gardenStore = useGardens()
-	const isMobile = inject('isMobile')
 	const showModal = ref(false)
 
 	const currentSeed = ref({
