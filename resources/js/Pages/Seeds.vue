@@ -8,7 +8,7 @@
 	</div>
 	<div class="alert alert-info" role="alert" v-else>Семена отсутствуют</div>
 
-	<Modal :open="showModal" title="Добавление семян" @close="showModal = false">
+	<Modal :open="showModal" :title="currentSeed?.uuid ? 'Редактирование семян' : 'Добавление семян'" @close="showModal = false">
 		<template #body>
 			<div class="mb-3">
 				<label for="name" class="form-label">Название</label>
