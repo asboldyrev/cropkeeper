@@ -24,10 +24,12 @@
 	}
 
 	onBeforeMount(() => {
-		const themeName = localStorage.getItem('theme')
-		if(themeName) {
-			toggleTheme(themeName)
+		if(!localStorage.getItem('theme')) {
+			localStorage.setItem('theme', 'dark')
 		}
+
+		const themeName = localStorage.getItem('theme')
+		toggleTheme(themeName)
 	})
 </script>
 
