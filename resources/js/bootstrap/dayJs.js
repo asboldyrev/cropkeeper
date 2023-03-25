@@ -5,4 +5,4 @@ import ruLocale from 'dayjs/locale/ru'
 dayjs.locale(ruLocale)
 dayjs.extend(localizedFormat)
 
-window.dayjs = dayjs
+export { dayjs as dayjs }

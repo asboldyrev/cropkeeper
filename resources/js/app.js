@@ -1,4 +1,4 @@
-import '@/bootstrap'
+import { dayjs, progressBar, router } from '@/bootstrap'
 
 import { createApp } from 'vue'
 import App from '@/App.vue'
@@ -8,7 +8,8 @@ const pinia = createPinia()
 const app = createApp(App)
 
 app
-	.provide('dayJs', dayjs)
+	.provide('dayjs', dayjs)
+	.provide('progressBar', progressBar)
 	.use(router)
 	.use(pinia)
 	.mount('#app')

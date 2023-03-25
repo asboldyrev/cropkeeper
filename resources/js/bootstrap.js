@@ -1,6 +1,10 @@
-import '@/bootstrap/dayJs'
-import '@/bootstrap/router'
 import 'remixicon/fonts/remixicon.css'
+import 'nprogress/nprogress.css'
+
+export { dayjs } from  '@/bootstrap/dayJs'
+export { router } from '@/bootstrap/router'
+export { progressBar } from '@/bootstrap/progessbar'
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

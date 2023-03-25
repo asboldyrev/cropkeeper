@@ -18,7 +18,7 @@
 	import DeleteButton from '@/Components/DeleteButton.vue'
 	import { computed, inject } from 'vue'
 
-	const dayjs = inject('dayJs')
+	const dayjs = inject('dayjs')
 
 	const props = defineProps({
 		seed: {

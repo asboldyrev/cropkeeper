@@ -40,4 +40,4 @@ router.beforeEach(async (to, from, next) => {
 	}
 })
 
-window.router = router
+export { router }
