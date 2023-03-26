@@ -15,7 +15,8 @@ return new class extends Migration
 			$table->uuid()->primary();
 			$table->foreignUuid('plant_uuid')->constrained(column: 'uuid')->restrictOnDelete();
 			$table->timestamp('harvested_at')->nullable();
-			$table->unsignedSmallInteger('count')->default(0);
+			$table->float('count', 5)->default(0);
+			$table->enum('unit', [ 'quantity', 'grams', 'kilograms' ])->default('kilograms');
 			$table->timestamps();
 		});
 	}

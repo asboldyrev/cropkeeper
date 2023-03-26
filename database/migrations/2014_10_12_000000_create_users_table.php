@@ -18,7 +18,7 @@ return new class extends Migration
 			$table->string('password');
 			$table->string('first_name')->nullable();
 			$table->string('last_name')->nullable();
-			$table->string('locale', 5)->default(config('app.locale'));
+			$table->string('locale', 6)->default(config('app.locale'));
 			$table->timestamp('email_verified_at')->nullable();
 			$table->rememberToken();
 			$table->timestamps();

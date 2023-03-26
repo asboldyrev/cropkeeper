@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->float('area')->nullable();
 			$table->foreignUuid('garden_uuid')->constrained(column: 'uuid')->cascadeOnDelete();
 			$table->foreignUuid('planting_method_uuid')->constrained(column: 'uuid')->restrictOnDelete();
-			$table->float('ph', 2, 1);
+			$table->float('ph', 3, 1);
 			$table->timestamps();
 		});
 	}
