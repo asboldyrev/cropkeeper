@@ -2,7 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Garden;
+use App\Models\Harvest;
+use App\Models\Plant;
+use App\Models\PlantCare;
 use App\Models\PlantingMethod;
+use App\Models\Plot;
+use App\Models\Seed;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,52 +20,51 @@ class FakeDataSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		$user = User::first();
+		$user = User::factory()->admin()->create();
+		$this->seed($user);
+
+		$users = User::factory(2)->create();
+		foreach($users as $user) {
+			$this->seed($user);
+		}
+	}
+
+
+	protected function seed(User $user) {
 		$planting_method = PlantingMethod::first();
 
-		// Garden
-		$garden = $user->gardens()->create([
-			'name' => 'Основной огород',
-			'description' => 'тестовый огород',
-			'area' => 12.5
-		], [ 'role' => 'owner' ]);
+		$garden = Garden
+			::factory(1)
+			->hasAttached($user, [ 'role' => 'owner' ], 'users')
+			->create();
 
-		// Plot
-		$plot = $garden->plots()->make([
-			'name' => 'Грядка 1',
-			'area' => 5,
-			'ph' => 7
-		]);
-		$plot->plantingMethod()->associate($planting_method);
-		$plot->save();
+		$plots = Plot
+			::factory(2)
+			->for($garden->random())
+			->for($planting_method, 'plantingMethod')
+			->create();
 
-		// Seed
-		$seed = $garden->seeds()->create([
-			'name' => 'Семена',
-			'count' => 10,
-			'unit' => 'quantity'
-		]);
+		$seeds = Seed::factory(5)->for($garden->random())->create();
 
-		// Plant
-		$plant = $plot->plants()->make([
-			'name' => 'Растение',
-			'is_transplanted' => true,
-		]);
-		$plant->seed()->associate($seed);
-		$plant->garden()->associate($garden);
-		$plant->save();
+		foreach($seeds as $seed) {
+			$plants = Plant
+				::factory(4)
+				->for($seed)
+				->for($plots->random(), 'plot')
+				->for($garden->random())
+				->create();
 
-		// Harvest
-		$harvests = $plant->harvests()->create([
-			'harvested_at' => '2004-02-12T15:19:21+00:00',
-			'count' => 1.5
-		]);
+			foreach($plants as $plant) {
+				Harvest
+					::factory(2)
+					->for($plant)
+					->create();
 
-
-		// PlantCare
-		$plant_care = $plant->plantCares()->create([
-			'action' => 'Уборка урожая',
-			'date' => '2004-02-12T15:19:21+00:00'
-		]);
+				PlantCare
+					::factory(3)
+					->for($plant)
+					->create();
+			}
+		}
 	}
 }
