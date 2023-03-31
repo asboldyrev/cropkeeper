@@ -1,5 +1,5 @@
 <template>
-	<div class="card position-relative">
+	<div class="card position-relative overflow-hidden">
 
 		<div class="position-absolute mt-2 ms-2">
 			<span class="badge bg-success rounded-pill" v-if="plant.is_seedling">Рассада</span>
@@ -22,7 +22,7 @@
 <script setup>
 	import IconButton from '@/Components/IconButton.vue'
 	import DeleteButton from '@/Components/DeleteButton.vue'
-	import { computed, inject } from 'vue'
+	import { inject } from 'vue'
 
 	const dayjs = inject('dayjs')
 

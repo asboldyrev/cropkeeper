@@ -1,5 +1,5 @@
 <template>
-	<div class="row">
+	<div class="row gy-4">
 		<div class="col-3" v-for="plant in plants" :key="plant.uuid">
 			<PlantCard :plant="plant" @edit="editPlant(plant)" @delete="deletePlant(plant)" />
 		</div>

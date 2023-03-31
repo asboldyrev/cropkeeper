@@ -1,7 +1,7 @@
 <template>
 	<IconButton class="mb-3" type="primary" icon="ri-add-line" outline @click="createSeed">Добавить</IconButton>
 
-	<div class="row" v-if="seedStore.seeds.length">
+	<div class="row gy-4" v-if="seedStore.seeds.length">
 		<div class="col-sm col-md-4 col-lg-3" v-for="seed in seedStore.seeds" :key="seed.uuid">
 			<SeedCard :seed="seed" @edit="editSeed" @delete="deleteSeed" />
 		</div>
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-	import { computed, inject, onBeforeMount, ref } from "vue"
+	import { computed, onBeforeMount, ref } from "vue"
 	import { useSeeds } from "@/store/seeds"
 	import { useGardens } from "@/store/gardens"
 	import SeedCard from '@/Blocks/SeedCard.vue'
