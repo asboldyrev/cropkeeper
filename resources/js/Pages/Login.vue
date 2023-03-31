@@ -21,8 +21,10 @@
 	import authApi from '@/Api/auth'
 	import { useToken } from '@/store/token'
 	import { useRouter } from 'vue-router'
+	import { useGardens } from "@/store/gardens";
 
-	const store = useToken()
+	const tokenStore = useToken()
+	const gardenStore = useGardens()
 	const router = useRouter()
 
 	const login = ref('')
@@ -35,7 +37,8 @@
 				password: password.value
 			})
 			.then(response => {
-				store.setToken(response.token)
+				tokenStore.setToken(response.token)
+				gardenStore.syncGardens()
 				router.push({ name: 'dashboard' })
 			})
 	}

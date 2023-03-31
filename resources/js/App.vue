@@ -23,19 +23,8 @@
 		doit = setTimeout(hasMobile, 100)
 	})
 
-	async function loadData() {
-		let try_load = 0
-		// ждем, пока переменная myVariable не будет готова
-		while (!tokenStore.token && try_load < 10) {
-			await new Promise(resolve => setTimeout(resolve, 100)); // ждем 1 секунду
-			try_load++
-		}
-		gardenStore.syncGardens()
-	}
-
 	onBeforeMount(() => {
 		hasMobile()
-		loadData()
 	})
 </script>
 
