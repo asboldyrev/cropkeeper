@@ -1,5 +1,5 @@
 <template>
-	map
+	Dashboard
 </template>
 
 <script setup>

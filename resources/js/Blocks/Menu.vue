@@ -1,10 +1,10 @@
 <template>
 	<nav class="nav flex-column">
 		<MenuItem
-			name="Карта"
-			icon="ri-road-map-line"
-			:selected="route.name == 'map'"
-			route="map"
+			name="Сводка"
+			icon="ri-dashboard-line"
+			:selected="route.name == 'dashboard'"
+			route="dashboard"
 		/>
 		<MenuItem
 			name="Календарь"
@@ -19,12 +19,6 @@
 			route="plants"
 		/>
 		<MenuItem
-			name="Участок"
-			icon="ri-shape-line"
-			:selected="route.name == 'plots'"
-			route="plots"
-		/>
-		<MenuItem
 			name="Семена"
 			icon="ri-seedling-line"
 			:selected="route.name == 'seeds'"
@@ -35,6 +29,12 @@
 			icon="ri-shopping-basket-line"
 			:selected="route.name == 'harvest'"
 			route="harvest"
+		/>
+		<MenuItem
+			name="Участок"
+			icon="ri-shape-line"
+			:selected="route.name == 'plots'"
+			route="plots"
 		/>
 	</nav>
 </template>

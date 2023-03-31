@@ -3,7 +3,7 @@ import Plots from '@/Pages/Plots.vue'
 import Plants from '@/Pages/Plants.vue'
 import Harvest from '@/Pages/Harvest.vue'
 import Login from '@/Pages/Login.vue'
-import Map from '@/Pages/Map.vue'
+import Dashboard from '@/Pages/Dashboard.vue'
 import Seeds from '@/Pages/Seeds.vue'
 import AppLayout from '@/Layouts/AppLayout.vue'
 import AuthLayout from '@/Layouts/AuthLayout.vue'
@@ -15,9 +15,9 @@ export default [
 		children: [
 			{
 				path: '/',
-				component: Map,
-				name: 'map',
-				meta: { title: 'Карта' }
+				component: Dashboard,
+				name: 'dashboard',
+				meta: { title: 'Сводка' }
 			},
 			{
 				path: '/calendar',

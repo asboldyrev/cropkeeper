@@ -30,7 +30,7 @@ router.beforeEach(async (to, from, next) => {
 	}
 
 	if (isLoginRoute && ((localToken && isLoggedIn) || store.token)) {
-		next({ name: 'map' })
+		next({ name: 'dashboard' })
 	}
 
 	if (isLoginRoute || (localToken && isLoggedIn) || store.token) {

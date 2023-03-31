@@ -36,7 +36,7 @@
 			})
 			.then(response => {
 				store.setToken(response.token)
-				router.push({ name: 'map' })
+				router.push({ name: 'dashboard' })
 			})
 	}
 
