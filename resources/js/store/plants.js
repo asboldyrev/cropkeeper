@@ -18,10 +18,15 @@ export const usePlants = defineStore('plants', () => {
 			})
 	}
 
+	function $reset() {
+		_plants.value = []
+	}
+
 	const plants = computed(() => _plants.value)
 
 	return {
 		plants,
-		syncPlants
+		syncPlants,
+		$reset
 	}
 })

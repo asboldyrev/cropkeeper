@@ -17,12 +17,17 @@ export const useGardens = defineStore('gardens', () => {
 			})
 	}
 
+	function $reset() {
+		_gardens.value = []
+	}
+
 	const gardens = computed(() => _gardens.value)
 	const garden = computed(() => _gardens.value[0])
 
 	return {
 		gardens,
 		garden,
-		syncGardens
+		syncGardens,
+		$reset
 	}
 })

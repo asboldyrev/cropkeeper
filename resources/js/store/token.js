@@ -16,11 +16,16 @@ export const useToken = defineStore('token', () => {
 		localStorage.removeItem('token')
 	};
 
+	function $reset() {
+		_token.value = ''
+	}
+
 	const token = computed(() => _token.value ? _token.value : null)
 
 	return {
 		token,
 		setToken,
-		resetToken
+		resetToken,
+		$reset
 	}
 })

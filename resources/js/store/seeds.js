@@ -18,10 +18,15 @@ export const useSeeds = defineStore('seeds', () => {
 			})
 	}
 
+	function $reset() {
+		_seeds.value = []
+	}
+
 	const seeds = computed(() => _seeds.value)
 
 	return {
 		seeds,
-		syncSeeds
+		syncSeeds,
+		$reset
 	}
 })
