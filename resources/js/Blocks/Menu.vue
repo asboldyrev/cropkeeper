@@ -1,51 +1,34 @@
 <template>
 	<nav class="nav flex-column">
 		<MenuItem
-			name="Сводка"
-			icon="ri-dashboard-line"
-			:selected="route.name == 'dashboard'"
-			route="dashboard"
-		/>
-		<MenuItem
-			name="Календарь"
-			icon="ri-calendar-line"
-			:selected="route.name == 'calendar'"
-			route="calendar"
-		/>
-		<MenuItem
-			name="Растения"
-			icon="ri-plant-line"
-			:selected="route.name == 'plants'"
-			route="plants"
-		/>
-		<MenuItem
-			name="Семена"
-			icon="ri-seedling-line"
-			:selected="route.name == 'seeds'"
-			route="seeds"
-		/>
-		<MenuItem
-			name="Урожай"
-			icon="ri-shopping-basket-line"
-			:selected="route.name == 'harvest'"
-			route="harvest"
-		/>
-		<MenuItem
-			name="Участок"
-			icon="ri-shape-line"
-			:selected="route.name == 'plots'"
-			route="plots"
+			:name="route.meta?.name"
+			:icon="route.meta?.icon"
+			:selected="currentRoute.name == route.name"
+			:route="route.name"
+			v-for="route in routes"
 		/>
 	</nav>
 </template>
 
 <script setup>
 	import MenuItem from '@/Components/MenuItem.vue'
-	import { useRoute } from 'vue-router'
+	import { computed } from 'vue'
+	import { useRoute, useRouter } from 'vue-router'
 
-	const route = useRoute()
+	const props = defineProps({
+		parentRoute: {
+			type: String,
+			required: true
+		}
+	})
+
+	const currentRoute = useRoute()
+	const router = useRouter()
+
+	const routes = computed(() => {
+		const parentRoute = router.getRoutes().find(route => route.name === props.parentRoute)
+		if (parentRoute) {
+			return parentRoute.children
+		}
+	})
 </script>
-
-<style lang="scss" scoped>
-
-</style>
