@@ -87,20 +87,6 @@
 		return 0.01
 	})
 
-	function storeSeed() {
-		const data = {
-			...currentSeed.value,
-			garden_uuid: gardenStore.garden.uuid
-		}
-
-		seedsApi
-			.store(data)
-			.then(response => {
-				showModal.value = false
-				seedStore.syncSeeds()
-			})
-	}
-
 	function createSeed() {
 		currentSeed.value = {
 			uuid: null,
@@ -114,6 +100,20 @@
 		}
 
 		showModal.value = true
+	}
+
+	function storeSeed() {
+		const data = {
+			...currentSeed.value,
+			garden_uuid: gardenStore.garden.uuid
+		}
+
+		seedsApi
+			.store(data)
+			.then(response => {
+				showModal.value = false
+				seedStore.syncSeeds()
+			})
 	}
 
 	function editSeed(seed) {
