@@ -12,10 +12,14 @@
 				>
 			</a>
 			<ul class="dropdown-menu">
-				<!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
+				<li>
+					<router-link class="dropdown-item" :to="{ name: 'profile' }">
+						<i class="ri-user-line"></i> Профиль
+					</router-link>
+				</li>
 				<!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
 				<li>
-					<!-- <hr class="dropdown-divider"> -->
+					<hr class="dropdown-divider">
 				</li>
 				<li>
 					<router-link class="dropdown-item" :to="{ name: 'logout' }">
