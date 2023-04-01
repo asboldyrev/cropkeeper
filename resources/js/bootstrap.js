@@ -4,6 +4,7 @@ import 'nprogress/nprogress.css'
 export { dayjs } from  '@/bootstrap/dayJs'
 export { router } from '@/bootstrap/router'
 export { progressBar } from '@/bootstrap/progessbar'
+export { default as bootstrap5 } from '@/bootstrap/bootstrap5'
 
 
 /**

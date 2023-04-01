@@ -25,7 +25,7 @@ router.beforeEach(async (to, from, next) => {
 				}
 			})
 			.catch(() => {
-				next({ name: 'login' })
+				next({ name: 'logout' })
 			});
 	}
 
@@ -36,7 +36,7 @@ router.beforeEach(async (to, from, next) => {
 	if (isLoginRoute || (localToken && isLoggedIn) || store.token) {
 		next()
 	} else {
-		next({ name: 'login' })
+		next({ name: 'logout' })
 	}
 })
 

@@ -1,10 +1,12 @@
 import Calendar from '@/Pages/Calendar.vue'
-import Plots from '@/Pages/Plots.vue'
-import Plants from '@/Pages/Plants.vue'
+import Dashboard from '@/Pages/Dashboard.vue'
 import Harvest from '@/Pages/Harvest.vue'
 import Login from '@/Pages/Login.vue'
-import Dashboard from '@/Pages/Dashboard.vue'
+import Logout from '@/Pages/Logout.vue'
+import Plants from '@/Pages/Plants.vue'
+import Plots from '@/Pages/Plots.vue'
 import Seeds from '@/Pages/Seeds.vue'
+
 import AppLayout from '@/Layouts/AppLayout.vue'
 import AuthLayout from '@/Layouts/AuthLayout.vue'
 
@@ -60,6 +62,12 @@ export default [
 				component: Login,
 				name: 'login',
 				meta: { title: 'Вход' }
+			},
+			{
+				path: '/logout',
+				component: Logout,
+				name: 'logout',
+				meta: { title: 'Выход' }
 			},
 		]
 	}

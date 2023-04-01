@@ -3,15 +3,13 @@
 </template>
 
 <script setup>
-	import { computed, onBeforeMount, provide, ref } from "vue"
-	import { useToken } from "@/store/token"
-	import { useGardens } from "@/store/gardens"
+	import { inject, onBeforeMount, onMounted, provide, ref } from "vue"
 
-	const tokenStore = useToken()
-	const gardenStore = useGardens()
 	const isMobile = ref(false)
 
 	provide('isMobile', isMobile)
+
+	const bootstrap = inject('bootstrap')
 
 	function hasMobile() {
 		isMobile.value = screen.width <= 500
@@ -25,6 +23,10 @@
 
 	onBeforeMount(() => {
 		hasMobile()
+	})
+
+	onMounted(() => {
+		setTimeout(bootstrap, 1000)
 	})
 </script>
 

@@ -23,7 +23,7 @@
 						</span>
 					</button>
 
-					<img src="https://avatars.githubusercontent.com/u/15995789?s=96&v=4" alt="" width="32" height="32" class="rounded-circle ms-3">
+					<Profile />
 				</div>
 			</div>
 			<router-view></router-view>
@@ -34,7 +34,8 @@
 <script setup>
 	import Menu from "@/Blocks/Menu.vue";
 	import ThemeSwitcher from '@/Blocks/ThemeSwitcher.vue'
-	import { useGardens } from "@/store/gardens";
+	import Profile from "@/Blocks/Profile.vue"
+	import { useGardens } from "@/store/gardens"
 
 	const gardenStore = useGardens()
 </script>
