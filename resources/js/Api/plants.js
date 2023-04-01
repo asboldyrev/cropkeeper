@@ -1,8 +1,8 @@
 import api from '@/Api/request'
 
 export default {
-	list(data) {
-		return api.request('plants/list', data)
+	list(gardenUuid) {
+		return api.request('plants/list', { garden_uuid: gardenUuid })
 	},
 	store(data) {
 		return api.request('plants/store', data)

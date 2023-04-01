@@ -1,9 +1,12 @@
 <template>
-	<div class="row gy-4">
+	<IconButton class="mb-3" type="primary" icon="ri-add-line" outline @click="createPlant">Добавить</IconButton>
+
+	<div class="row gy-4" v-if="plants.length">
 		<div class="col-3" v-for="plant in plants" :key="plant.uuid">
 			<PlantCard :plant="plant" @edit="editPlant(plant)" @delete="deletePlant(plant)" />
 		</div>
 	</div>
+	<div class="alert alert-info" role="alert" v-else>Семена отсутствуют</div>
 
 	<Modal
 		:open="showModal"
@@ -36,6 +39,16 @@
 				<input type="date" class="form-control" id="harvested_at" v-model="currentPlant.harvested_at">
 			</div>
 		</template>
+		<template #footer>
+			<div v-if="currentPlant.uuid">
+				<IconButton type="secondary" icon="ri-close-line" outline @click="showModal = false">Отменить</IconButton>
+				<IconButton class="ms-3" type="primary" icon="ri-check-line" @click="updatePlant">Сохранить</IconButton>
+			</div>
+			<div v-else>
+				<IconButton type="secondary" icon="ri-close-line" outline @click="showModal = false">Отменить</IconButton>
+				<IconButton class="ms-3" type="primary" icon="ri-check-line" @click="storePlant">Создать</IconButton>
+			</div>
+		</template>
 	</Modal>
 </template>
 
@@ -43,10 +56,13 @@
 	import { onBeforeMount, ref } from "vue"
 	import plantsApi from '@/Api/plants'
 	import { useGardens } from "@/store/gardens"
+	import { usePlants } from '@/store/plants'
 	import PlantCard from '@/Blocks/PlantCard.vue'
 	import Modal from '@/Blocks/Modal.vue'
+	import IconButton from "@/Components/IconButton.vue"
 
 	const gardenStore = useGardens()
+	const plantStore = usePlants()
 
 	const plants = ref([])
 	const currentPlant = ref({
@@ -60,6 +76,33 @@
 	})
 	const showModal = ref(false)
 
+	function createPlant() {
+		currentPlant.value = {
+			uuid: null,
+			name: '',
+			description: null,
+			is_seedling: false,
+			is_transplanted: false,
+			planted_at: null,
+			harvested_at: null
+		}
+
+		showModal.value = true
+	}
+
+	function storePlant() {
+		const data = {
+			...currentPlant.value,
+			garden_uuid: gardenStore.garden.uuid
+		}
+
+		plantsApi
+			.store(data)
+			.then(response => {
+				// showModal.value = false
+				// plantStore.syncPlants()
+			})
+	}
 
 	function editPlant(plant) {
 		currentPlant.value = {
@@ -74,14 +117,32 @@
 		showModal.value = true
 	}
 
-	function deletePlant(plant) {
+	function updatePlant() {
+		const data = {
+			...currentSeed.value,
+			garden_uuid: gardenStore.garden.uuid
+		}
 
+		seedsApi
+			.update(currentSeed.value.uuid, data)
+			.then(response => {
+				showModal.value = false
+				plantStore.syncPlants()
+			})
+	}
+
+	function deletePlant(plant) {
+		seedsApi
+			.delete(seed.uuid)
+			.then(response => {
+				plantStore.syncPlants()
+			})
 	}
 
 
 	onBeforeMount(() => {
 		plantsApi
-			.list({ garden_uuid: gardenStore.garden?.uuid })
+			.list(gardenStore.garden?.uuid)
 			.then(response => {
 				response.data.forEach(plant => {
 					plants.value.push(plant)
