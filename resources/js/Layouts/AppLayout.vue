@@ -1,11 +1,8 @@
 <template>
 	<div class="wrapper">
 		<div class="sidebar border-end p-3">
-			<a class="navbar-brand d-inline-block mb-4" href="#">
-				<img src="img/logo.svg" alt="Logo" height="28" class="ms-3">
-				<span class="ms-2">CropKeeper</span>
-			</a>
-			<Menu />
+			<Logo class="mb-4" />
+			<Menu parent-route="app-layout" />
 		</div>
 
 		<div class="main-content m-3">
@@ -32,10 +29,11 @@
 </template>
 
 <script setup>
-	import Menu from "@/Blocks/Menu.vue";
+	import Menu from "@/Blocks/Menu.vue"
 	import ThemeSwitcher from '@/Blocks/ThemeSwitcher.vue'
 	import Profile from "@/Blocks/Profile.vue"
 	import { useGardens } from "@/store/gardens"
+	import Logo from "@/Components/Logo.vue"
 
 	const gardenStore = useGardens()
 </script>
