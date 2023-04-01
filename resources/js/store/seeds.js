@@ -8,16 +8,14 @@ export const useSeeds = defineStore('seeds', () => {
 	const _seeds = ref([])
 
 	function syncSeeds() {
-		setTimeout(() => {
-			seedsApi
-				.list(store.garden.uuid)
-				.then(response => {
-					_seeds.value = []
-					response.data.forEach(seed => {
-						_seeds.value.push(seed)
-					});
-				})
-		}, 400)
+		seedsApi
+			.list(store.garden.uuid)
+			.then(response => {
+				_seeds.value = []
+				response.data.forEach(seed => {
+					_seeds.value.push(seed)
+				});
+			})
 	}
 
 	const seeds = computed(() => _seeds.value)
