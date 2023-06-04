@@ -38,6 +38,9 @@ class SeedController extends Controller
 			'expiration_at' => [ 'nullable', 'date_format:Y-m-d' ],
 			'count' => [ 'nullable', 'numeric' ],
 			'unit' => [new Enum(SeedUnit::class)],
+		],
+		[
+			'name' => 'Поле «Название» обязательное'
 		]);
 
 		/** @var Garden $garden */

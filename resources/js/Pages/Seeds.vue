@@ -8,12 +8,14 @@
 	</div>
 	<div class="alert alert-info" role="alert" v-else>Семена отсутствуют</div>
 
-	<Modal :open="showModal" :title="currentSeed?.uuid ? 'Редактирование семян' : 'Добавление семян'" @close="showModal = false">
+	<Modal :open="showModal" :title="currentSeed?.uuid ? 'Редактирование семян' : 'Добавление семян'" @close="closeModal">
 		<template #body>
 			<div class="mb-3">
 				<label for="name" class="form-label">Название</label>
-				<input type="text" class="form-control" id="name" v-model="currentSeed.name">
+				<input type="text" class="form-control" :class="{ 'is-invalid': errors?.name?.length }" id="name" v-model="currentSeed.name">
+				<div class="invalid-feedback" v-for="(errorMessage, index) in errors?.name" :key="index">{{ errorMessage }}</div>
 			</div>
+
 			<div class="mb-3">
 				<label for="manufacturer" class="form-label">Производитель</label>
 				<input type="text" class="form-control" id="manufacturer" v-model="currentSeed.manufacturer">
@@ -44,11 +46,11 @@
 		</template>
 		<template #footer>
 			<div v-if="currentSeed.uuid">
-				<IconButton type="secondary" icon="ri-close-line" outline @click="showModal = false">Отменить</IconButton>
+				<IconButton type="secondary" icon="ri-close-line" outline @click="closeModal">Отменить</IconButton>
 				<IconButton class="ms-3" type="primary" icon="ri-check-line" @click="updateSeed">Сохранить</IconButton>
 			</div>
 			<div v-else>
-				<IconButton type="secondary" icon="ri-close-line" outline @click="showModal = false">Отменить</IconButton>
+				<IconButton type="secondary" icon="ri-close-line" outline @click="closeModal">Отменить</IconButton>
 				<IconButton class="ms-3" type="primary" icon="ri-check-line" @click="storeSeed">Создать</IconButton>
 			</div>
 		</template>
@@ -68,6 +70,8 @@
 	const gardenStore = useGardens()
 	const showModal = ref(false)
 
+	const errors = ref({})
+
 	const currentSeed = ref({
 		uuid: null,
 		name: '',
@@ -86,6 +90,11 @@
 
 		return 0.01
 	})
+
+	function closeModal() {
+		showModal.value = false
+		errors.value = {}
+	}
 
 	function createSeed() {
 		currentSeed.value = {
@@ -111,13 +120,17 @@
 		seedsApi
 			.store(data)
 			.then(response => {
-				showModal.value = false
-				seedStore.syncSeeds()
+				if(response?.errors) {
+					errors.value = response?.errors
+				} else {
+					closeModal()
+					seedStore.syncSeeds()
+				}
 			})
 	}
 
 	function editSeed(seed) {
-		currentSeed.value = seed
+		currentSeed.value = { ...seed }
 
 		showModal.value = true
 	}
@@ -131,8 +144,12 @@
 		seedsApi
 			.update(currentSeed.value.uuid, data)
 			.then(response => {
-				showModal.value = false
-				seedStore.syncSeeds()
+				if(response?.errors) {
+					errors.value = response?.errors
+				} else {
+					closeModal()
+					seedStore.syncSeeds()
+				}
 			})
 	}
 
