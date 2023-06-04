@@ -25,3 +25,5 @@ include_once base_path('routes/api/seeds.php');
 include_once base_path('routes/api/plants.php');
 include_once base_path('routes/api/harvests.php');
 include_once base_path('routes/api/plant_cares.php');
+
+Route::middleware('auth:sanctum')->post('uploadFiles', 'FileController@upload');
