@@ -14,7 +14,7 @@ class FileController
 		foreach($request->file('files', []) as $file) {
 			$filename = $file->hashName();
 			$names[] = $filename;
-			// Storage::putFileAs('files', $file, $filename);
+			Storage::putFileAs('files', $file, $filename);
 		}
 
 		return response()->json($names);
