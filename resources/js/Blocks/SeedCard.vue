@@ -1,6 +1,6 @@
 <template>
 	<div class="card overflow-hidden">
-		<img src="https://placehold.co/600x400" alt="">
+		<img :src="seed.images[0]?.urls?.preview || 'https://placehold.co/600x400'" alt="">
 		<div class="card-body">
 			<h6 class="mb-3">{{ seed.name }}<span class="text-muted fw-normal" v-if="seed.manufacturer"> ({{ seed.manufacturer }})</span></h6>
 			<p class="mb-0" v-if="seed.count"><strong>Количество</strong>: {{ seed.count }} {{ unit }}</p>

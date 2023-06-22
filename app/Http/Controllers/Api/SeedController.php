@@ -9,6 +9,7 @@ use App\Models\Garden;
 use App\Models\Seed;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class SeedController extends Controller
 {
@@ -50,6 +51,10 @@ class SeedController extends Controller
 
 		$seed = $garden->seeds()->create($validated);
 
+		foreach($request->input('filenames', []) as $filename) {
+			$seed->addMediaFromDisk('files/' . $filename)->toMediaCollection();
+		}
+
 		return SeedResource::make($seed);
 	}
 
@@ -73,6 +78,14 @@ class SeedController extends Controller
 		]);
 
 		$seed->update($validated);
+
+		if($request->input('deleteMedia')) {
+			$seed->clearMediaCollection();
+		}
+
+		foreach($request->input('filenames', []) as $filename) {
+			$seed->addMediaFromDisk('files/' . $filename)->toMediaCollection();
+		}
 
 		return SeedResource::make($seed);
 	}

@@ -25,6 +25,24 @@
 				<textarea class="form-control" id="description" rows="3" v-model="currentSeed.description"></textarea>
 			</div>
 			<div class="mb-3">
+				<label for="formFile" class="form-label">Фото</label>
+				<input class="form-control" type="file" id="formFile" accept="image/*">
+			</div>
+
+			<div class="mb-3" v-if="currentSeed?.images && currentSeed.images[0]?.urls?.thumb">
+				<img class="img-fluid" :src="currentSeed.images[0]?.urls?.thumb" alt="">
+				<div class="form-check">
+					<input
+						class="form-check-input"
+						v-model="currentSeed.deleteMedia"
+						:id="`seed${currentSeed.images[0]?.media?.id}`"
+						type="checkbox"
+					>
+					<label class="form-check-label" :for="`seed${currentSeed.images[0]?.media?.id}`">Удалить</label>
+				</div>
+			</div>
+
+			<div class="mb-3">
 				<label for="bought_at" class="form-label">Куплен</label>
 				<input type="date" class="form-control" id="bought_at" v-model="currentSeed.bought_at">
 			</div>
@@ -65,6 +83,7 @@
 	import IconButton from '@/Components/IconButton.vue'
 	import Modal from "@/Blocks/Modal.vue"
 	import seedsApi from '@/Api/seeds'
+	import requestApi from '@/Api/request'
 
 	const seedStore = useSeeds()
 	const gardenStore = useGardens()
@@ -80,7 +99,9 @@
 		bought_at: null,
 		expiration_at: null,
 		count: 0,
-		unit: 'grams'
+		unit: 'grams',
+		images: [],
+		deleteMedia: false
 	})
 
 	const stepCount = computed(() => {
@@ -94,6 +115,7 @@
 	function closeModal() {
 		showModal.value = false
 		errors.value = {}
+		document.querySelector('input[type="file"]').value = null
 	}
 
 	function createSeed() {
@@ -111,10 +133,18 @@
 		showModal.value = true
 	}
 
-	function storeSeed() {
+	async function storeSeed() {
+		const file = document.querySelector('input[type="file"]').files[0]
+		let filenames;
+
+		if(file) {
+			filenames = await requestApi.uploadFile(file)
+		}
+
 		const data = {
 			...currentSeed.value,
-			garden_uuid: gardenStore.garden.uuid
+			garden_uuid: gardenStore.garden.uuid,
+			filenames
 		}
 
 		seedsApi
@@ -135,10 +165,18 @@
 		showModal.value = true
 	}
 
-	function updateSeed() {
+	async function updateSeed() {
+		const file = document.querySelector('input[type="file"]').files[0]
+		let filenames;
+
+		if(file) {
+			filenames = await requestApi.uploadFile(file)
+		}
+
 		const data = {
 			...currentSeed.value,
-			garden_uuid: gardenStore.garden.uuid
+			garden_uuid: gardenStore.garden.uuid,
+			filenames
 		}
 
 		seedsApi
