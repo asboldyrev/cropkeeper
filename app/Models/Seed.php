@@ -61,7 +61,7 @@ class Seed extends Model implements HasMedia
 	{
 		$this
 			->addMediaConversion('preview')
-			->fit(Manipulations::FIT_CROP, 600, 400)
+			->fit(Manipulations::FIT_CROP, 270, 480)
 			->nonQueued();
 
 		$this
