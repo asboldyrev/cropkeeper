@@ -2,7 +2,7 @@
 	<IconButton class="mb-3" type="primary" icon="ri-add-line" outline @click="createSeed">Добавить</IconButton>
 
 	<div class="row gy-4" v-if="seedStore.seeds.length">
-		<div class="col-sm col-md-4 col-lg-3" v-for="seed in seedStore.seeds" :key="seed.uuid">
+		<div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12" v-for="seed in seedStore.seeds" :key="seed.uuid">
 			<SeedCard :seed="seed" @edit="editSeed" @delete="deleteSeed" />
 		</div>
 	</div>
@@ -49,17 +49,6 @@
 			<div class="mb-3">
 				<label for="expiration_at" class="form-label">Годен до</label>
 				<input type="date" class="form-control" id="expiration_at" v-model="currentSeed.expiration_at">
-			</div>
-			<div class="mb-3">
-				<label for="count" class="form-label">Количество</label>
-				<input type="number" min="0" :step="stepCount" class="form-control" id="count" v-model="currentSeed.count">
-			</div>
-			<div class="mb-3">
-				<label for="count" class="form-label">Единицы измерения</label>
-				<select class="form-select" id="count" v-model="currentSeed.unit">
-					<option value="grams">гр.</option>
-					<option value="quantity">шт.</option>
-				</select>
 			</div>
 		</template>
 		<template #footer>
