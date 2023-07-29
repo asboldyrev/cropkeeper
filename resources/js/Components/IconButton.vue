@@ -9,6 +9,10 @@
 	import { computed } from "vue"
 
 	const props = defineProps({
+		size: {
+			type: String
+		},
+
 		outline: {
 			type: Boolean
 		},

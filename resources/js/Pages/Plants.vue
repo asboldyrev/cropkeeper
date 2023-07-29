@@ -1,10 +1,10 @@
 <template>
 	<IconButton class="mb-3" type="primary" icon="ri-add-line" outline @click="createPlant">Добавить</IconButton>
 
-	<div class="row gy-4" v-if="plants.length">
-		<div class="col-3" v-for="plant in plants" :key="plant.uuid">
-			<PlantCard :plant="plant" @edit="editPlant(plant)" @delete="deletePlant(plant)" />
-		</div>
+	<div class="table-responsive" v-if="plants.length">
+		<table class="table table-hover table-striped table-bordered">
+			<PlantItem v-for="plant in plants" :key="plant.uuid" :plant="plant" @edit="editPlant(plant)" @delete="deletePlant(plant)" />
+		</table>
 	</div>
 	<div class="alert alert-info" role="alert" v-else>Семена отсутствуют</div>
 
@@ -57,7 +57,7 @@
 	import plantsApi from '@/Api/plants'
 	import { useGardens } from "@/store/gardens"
 	import { usePlants } from '@/store/plants'
-	import PlantCard from '@/Blocks/PlantCard.vue'
+	import PlantItem from '@/Blocks/PlantItem.vue'
 	import Modal from '@/Blocks/Modal.vue'
 	import IconButton from "@/Components/IconButton.vue"
 

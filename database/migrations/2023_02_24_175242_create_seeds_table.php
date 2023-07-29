@@ -18,8 +18,7 @@ return new class extends Migration
 			$table->text('description')->nullable();
 			$table->date('bought_at')->nullable();
 			$table->date('expiration_at')->nullable();
-			$table->float('count', 4)->default(0);
-			$table->enum('unit', [ 'quantity', 'grams' ])->default('grams');
+			$table->boolean('run_out')->default(false);
 			$table->foreignUuid('garden_uuid')->constrained( column: 'uuid')->cascadeOnDelete();
 			$table->timestamps();
 		});

@@ -16,20 +16,22 @@ class Seed extends Model implements HasMedia
 {
 	use HasFactory, HasUuids, InteractsWithMedia;
 
+	protected $attributes = [
+		'run_out' => false,
+	];
+
 	protected $fillable = [
 		'name',
 		'manufacturer',
 		'description',
 		'bought_at',
 		'expiration_at',
-		'count',
-		'unit',
+		'run_out',
 	];
 
 	protected $casts = [
 		'bought_at' => 'date',
 		'expiration_at' => 'date',
-		'count' => 'float',
 	];
 
 	protected $primaryKey = 'uuid';

@@ -8,7 +8,7 @@
 		<div class="main-content m-3">
 			<div class="row mb-4">
 				<div class="col text-end">
-					<ThemeSwitcher />
+					<!-- <ThemeSwitcher /> -->
 
 					<button class="btn btn-outline-secondary btn-sm ms-3 position-relative">
 						<i class="ri-notification-2-line"></i>
@@ -27,7 +27,7 @@
 
 <script setup>
 	import Menu from "@/Blocks/Menu.vue"
-	import ThemeSwitcher from '@/Blocks/ThemeSwitcher.vue'
+	// import ThemeSwitcher from '@/Blocks/ThemeSwitcher.vue'
 	import Profile from "@/Blocks/Profile.vue"
 	import Logo from '@/Components/Logo.vue'
 

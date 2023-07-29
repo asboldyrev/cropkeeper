@@ -20,7 +20,7 @@
     "src": "node_modules/remixicon/fonts/remixicon.woff2"
   },
   "resources/js/app.css": {
-    "file": "assets/app-fc3fbc17.css",
+    "file": "assets/app-6d88c0f7.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -32,9 +32,9 @@
       "assets/remixicon-a10268fe.svg"
     ],
     "css": [
-      "assets/app-fc3fbc17.css"
+      "assets/app-6d88c0f7.css"
     ],
-    "file": "assets/app-dfc5b6a0.js",
+    "file": "assets/app-b4a3bfb4.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
